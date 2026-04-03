@@ -37,11 +37,6 @@ const monitoringMiddleware = (req, res, next) => {
     }
     
     if (memoryUsage.heapUsed / memoryUsage.heapTotal > 0.8) {
-      winston.warn('内存使用过高:', {
-        used: Math.round(memoryUsage.heapUsed / 1024 / 1024 * 100) / 100,
-        total: Math.round(memoryUsage.heapTotal / 1024 / 1024 * 100) / 100,
-        percentage: Math.round((memoryUsage.heapUsed / memoryUsage.heapTotal) * 100)
-      });
     }
     
     if (cpuUsage[0] > 1.0) {

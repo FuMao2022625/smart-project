@@ -53,7 +53,7 @@ const securityMiddleware = (app) => {
   });
   
   // 对API路由应用速率限制
-  app.use('/api', apiLimiter);
+  // app.use('/api', apiLimiter);
   
   // 对登录接口应用更严格的速率限制
   const loginLimiter = rateLimit({

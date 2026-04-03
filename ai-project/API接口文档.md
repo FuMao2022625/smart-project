@@ -39,6 +39,11 @@
 
 ### 设备模块
 - GET /api/devices/stats - 获取设备统计信息
+- GET /api/devices - 获取设备列表
+- POST /api/devices - 添加设备
+- GET /api/devices/:deviceId - 获取设备详情
+- PUT /api/devices/:deviceId - 更新设备信息
+- DELETE /api/devices/:deviceId - 删除设备
 
 ### 传感器模块
 - GET /api/sensors - 获取传感器列表
@@ -89,6 +94,30 @@
 - POST /api/ai/generate/report - 智能分析报告生成
 - POST /api/ai/query - 自然语言查询处理
 - GET /api/ai/analyze/environment - 获取环境数据并进行智能分析
+
+### 报警模块
+- GET /api/alarms - 获取报警列表
+- POST /api/alarms - 创建报警
+- GET /api/alarms/:alarmId - 获取报警详情
+- PUT /api/alarms/:alarmId - 更新报警信息
+- DELETE /api/alarms/:alarmId - 删除报警
+
+### 审计日志模块
+- GET /api/audit-logs - 获取审计日志列表
+- GET /api/audit-logs/:logId - 获取审计日志详情
+
+### 角色模块
+- GET /api/roles - 获取角色列表
+- POST /api/roles - 创建角色
+- GET /api/roles/:roleId - 获取角色详情
+- PUT /api/roles/:roleId - 更新角色信息
+- DELETE /api/roles/:roleId - 删除角色
+
+### 传感器数据模块
+- GET /api/sensor-data - 获取传感器数据列表
+- POST /api/sensor-data - 创建传感器数据
+- GET /api/sensor-data/:dataId - 获取传感器数据详情
+- GET /api/sensor-data/stats - 获取传感器数据统计
 
 ## 详细接口说明
 
@@ -587,6 +616,133 @@
     "maintenance": 3,
     "error": 2
   }
+}
+```
+
+#### GET /api/devices
+**功能**：获取设备列表
+**查询参数**：
+- page: 页码，默认1
+- pageSize: 每页数量，默认10
+- status: 状态
+- type_id: 设备类型ID
+- location: 位置
+- keyword: 关键词
+
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "total": 100,
+    "page": 1,
+    "pageSize": 10,
+    "items": [
+      {
+        "id": "device_1",
+        "name": "温度传感器",
+        "type_id": 1,
+        "model": "TS-100",
+        "serial_number": "SN123456",
+        "location": "A区",
+        "status": "online",
+        "install_date": "2026-01-01T00:00:00.000Z",
+        "last_maintenance": "2026-03-01T00:00:00.000Z",
+        "next_maintenance": "2026-06-01T00:00:00.000Z",
+        "last_heartbeat": "2026-04-02T22:26:23.123Z",
+        "create_time": "2026-01-01T00:00:00.000Z",
+        "update_time": "2026-04-02T22:26:23.123Z"
+      }
+    ]
+  }
+}
+```
+
+#### POST /api/devices
+**功能**：添加设备
+**请求参数**：
+- id: 设备ID
+- name: 设备名称
+- type_id: 设备类型ID
+- model: 设备型号
+- serial_number: 设备序列号
+- location: 设备部署位置
+- status: 设备状态
+- install_date: 安装日期
+- last_maintenance: 最后维护时间
+- next_maintenance: 下次维护时间
+
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "设备添加成功",
+  "data": {
+    "id": "device_1",
+    "name": "温度传感器",
+    "status": "offline"
+  }
+}
+```
+
+#### GET /api/devices/:deviceId
+**功能**：获取设备详情
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "id": "device_1",
+    "name": "温度传感器",
+    "type_id": 1,
+    "model": "TS-100",
+    "serial_number": "SN123456",
+    "location": "A区",
+    "status": "online",
+    "install_date": "2026-01-01T00:00:00.000Z",
+    "last_maintenance": "2026-03-01T00:00:00.000Z",
+    "next_maintenance": "2026-06-01T00:00:00.000Z",
+    "last_heartbeat": "2026-04-02T22:26:23.123Z",
+    "create_time": "2026-01-01T00:00:00.000Z",
+    "update_time": "2026-04-02T22:26:23.123Z"
+  }
+}
+```
+
+#### PUT /api/devices/:deviceId
+**功能**：更新设备信息
+**请求参数**：
+- name: 设备名称
+- type_id: 设备类型ID
+- model: 设备型号
+- location: 设备部署位置
+- status: 设备状态
+- last_maintenance: 最后维护时间
+- next_maintenance: 下次维护时间
+
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "设备信息更新成功",
+  "data": {
+    "id": "device_1",
+    "name": "温度传感器",
+    "status": "online"
+  }
+}
+```
+
+#### DELETE /api/devices/:deviceId
+**功能**：删除设备
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "设备删除成功",
+  "data": null
 }
 ```
 
@@ -1337,6 +1493,423 @@
     "dataPoints": 100
   },
   "timestamp": "2026-04-02T22:26:23.123Z"
+}
+```
+
+### 报警模块
+
+#### GET /api/alarms
+**功能**：获取报警列表
+**查询参数**：
+- page: 页码，默认1
+- pageSize: 每页数量，默认10
+- level: 报警级别
+- status: 报警状态
+- device_id: 设备ID
+- start_time: 开始时间
+- end_time: 结束时间
+
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "total": 50,
+    "page": 1,
+    "pageSize": 10,
+    "items": [
+      {
+        "id": 1,
+        "alarm_item": "温度异常",
+        "level": "high",
+        "device_id": "device_1",
+        "device_name": "温度传感器",
+        "location": "A区",
+        "alarm_time": "2026-04-02T22:26:23.123Z",
+        "resolve_time": null,
+        "status": "pending",
+        "handle_notes": null,
+        "create_time": "2026-04-02T22:26:23.123Z",
+        "update_time": "2026-04-02T22:26:23.123Z"
+      }
+    ]
+  }
+}
+```
+
+#### POST /api/alarms
+**功能**：创建报警
+**请求参数**：
+- alarm_item: 报警项
+- level: 报警级别
+- device_id: 关联设备ID
+- device_name: 设备名称
+- location: 报警位置
+- alarm_time: 报警时间
+- status: 报警状态
+- handle_notes: 处理备注
+
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "报警创建成功",
+  "data": {
+    "id": 1,
+    "alarm_item": "温度异常",
+    "level": "high",
+    "status": "pending"
+  }
+}
+```
+
+#### GET /api/alarms/:alarmId
+**功能**：获取报警详情
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "id": 1,
+    "alarm_item": "温度异常",
+    "level": "high",
+    "device_id": "device_1",
+    "device_name": "温度传感器",
+    "location": "A区",
+    "alarm_time": "2026-04-02T22:26:23.123Z",
+    "resolve_time": null,
+    "status": "pending",
+    "handle_notes": null,
+    "create_time": "2026-04-02T22:26:23.123Z",
+    "update_time": "2026-04-02T22:26:23.123Z"
+  }
+}
+```
+
+#### PUT /api/alarms/:alarmId
+**功能**：更新报警信息
+**请求参数**：
+- level: 报警级别
+- status: 报警状态
+- resolve_time: 解决时间
+- handle_notes: 处理备注
+
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "报警信息更新成功",
+  "data": {
+    "id": 1,
+    "status": "resolved",
+    "resolve_time": "2026-04-02T22:30:23.123Z"
+  }
+}
+```
+
+#### DELETE /api/alarms/:alarmId
+**功能**：删除报警
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "报警删除成功",
+  "data": null
+}
+```
+
+### 审计日志模块
+
+#### GET /api/audit-logs
+**功能**：获取审计日志列表
+**查询参数**：
+- page: 页码，默认1
+- pageSize: 每页数量，默认10
+- user_id: 操作用户ID
+- action: 操作类型
+- resource_type: 资源类型
+- start_time: 开始时间
+- end_time: 结束时间
+
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "total": 100,
+    "page": 1,
+    "pageSize": 10,
+    "items": [
+      {
+        "id": 1,
+        "user_id": 1,
+        "action": "login",
+        "resource_type": "user",
+        "resource_id": "1",
+        "ip_address": "192.168.1.1",
+        "user_agent": "Mozilla/5.0",
+        "details": {"login_time": "2026-04-02T22:26:23.123Z"},
+        "create_time": "2026-04-02T22:26:23.123Z"
+      }
+    ]
+  }
+}
+```
+
+#### GET /api/audit-logs/:logId
+**功能**：获取审计日志详情
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "id": 1,
+    "user_id": 1,
+    "action": "login",
+    "resource_type": "user",
+    "resource_id": "1",
+    "ip_address": "192.168.1.1",
+    "user_agent": "Mozilla/5.0",
+    "details": {"login_time": "2026-04-02T22:26:23.123Z"},
+    "create_time": "2026-04-02T22:26:23.123Z"
+  }
+}
+```
+
+### 角色模块
+
+#### GET /api/roles
+**功能**：获取角色列表
+**查询参数**：
+- page: 页码，默认1
+- pageSize: 每页数量，默认10
+- keyword: 关键词
+
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "total": 10,
+    "page": 1,
+    "pageSize": 10,
+    "items": [
+      {
+        "id": 1,
+        "name": "admin",
+        "description": "管理员角色",
+        "permissions": {"users": "all", "devices": "all"},
+        "create_time": "2026-04-01T00:00:00.000Z",
+        "update_time": "2026-04-01T00:00:00.000Z"
+      }
+    ]
+  }
+}
+```
+
+#### POST /api/roles
+**功能**：创建角色
+**请求参数**：
+- name: 角色名称
+- description: 角色描述
+- permissions: 角色权限
+
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "角色创建成功",
+  "data": {
+    "id": 1,
+    "name": "admin",
+    "description": "管理员角色"
+  }
+}
+```
+
+#### GET /api/roles/:roleId
+**功能**：获取角色详情
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "id": 1,
+    "name": "admin",
+    "description": "管理员角色",
+    "permissions": {"users": "all", "devices": "all"},
+    "create_time": "2026-04-01T00:00:00.000Z",
+    "update_time": "2026-04-01T00:00:00.000Z"
+  }
+}
+```
+
+#### PUT /api/roles/:roleId
+**功能**：更新角色信息
+**请求参数**：
+- name: 角色名称
+- description: 角色描述
+- permissions: 角色权限
+
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "角色信息更新成功",
+  "data": {
+    "id": 1,
+    "name": "admin",
+    "description": "超级管理员角色"
+  }
+}
+```
+
+#### DELETE /api/roles/:roleId
+**功能**：删除角色
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "角色删除成功",
+  "data": null
+}
+```
+
+### 传感器数据模块
+
+#### GET /api/sensor-data
+**功能**：获取传感器数据列表
+**查询参数**：
+- page: 页码，默认1
+- pageSize: 每页数量，默认10
+- device_id: 设备ID
+- type: 传感器类型
+- start_time: 开始时间
+- end_time: 结束时间
+
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "total": 1000,
+    "page": 1,
+    "pageSize": 10,
+    "items": [
+      {
+        "id": 1,
+        "device_id": "device_1",
+        "type": "temperature",
+        "temperature": 25.5,
+        "humidity": 45.0,
+        "smoke_level": 10.0,
+        "max_temp": {"value": 30.0, "timestamp": "2026-04-02T22:00:00.000Z"},
+        "human_detected": false,
+        "fire_risk": 0,
+        "env_status": 0.0,
+        "battery": 100,
+        "record_time": "2026-04-02T22:26:23.123Z",
+        "create_time": "2026-04-02T22:26:23.123Z"
+      }
+    ]
+  }
+}
+```
+
+#### POST /api/sensor-data
+**功能**：创建传感器数据
+**请求参数**：
+- device_id: 设备ID
+- type: 传感器类型
+- temperature: 温度
+- humidity: 湿度
+- smoke_level: 烟雾浓度
+- max_temp: 最高温度
+- human_detected: 是否检测到人
+- fire_risk: 火灾风险等级
+- env_status: 环境状态
+- battery: 电池电量
+- record_time: 记录时间
+
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "传感器数据创建成功",
+  "data": {
+    "id": 1,
+    "device_id": "device_1",
+    "type": "temperature",
+    "record_time": "2026-04-02T22:26:23.123Z"
+  }
+}
+```
+
+#### GET /api/sensor-data/:dataId
+**功能**：获取传感器数据详情
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "id": 1,
+    "device_id": "device_1",
+    "type": "temperature",
+    "temperature": 25.5,
+    "humidity": 45.0,
+    "smoke_level": 10.0,
+    "max_temp": {"value": 30.0, "timestamp": "2026-04-02T22:00:00.000Z"},
+    "human_detected": false,
+    "fire_risk": 0,
+    "env_status": 0.0,
+    "battery": 100,
+    "record_time": "2026-04-02T22:26:23.123Z",
+    "create_time": "2026-04-02T22:26:23.123Z"
+  }
+}
+```
+
+#### GET /api/sensor-data/stats
+**功能**：获取传感器数据统计
+**查询参数**：
+- device_id: 设备ID
+- type: 传感器类型
+- start_time: 开始时间
+- end_time: 结束时间
+
+**响应示例**：
+```json
+{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "temperature": {
+      "avg": 25.5,
+      "max": 30.0,
+      "min": 20.0,
+      "count": 1000
+    },
+    "humidity": {
+      "avg": 45.0,
+      "max": 60.0,
+      "min": 30.0,
+      "count": 1000
+    },
+    "smoke_level": {
+      "avg": 10.0,
+      "max": 50.0,
+      "min": 0.0,
+      "count": 1000
+    }
+  }
 }
 ```
 
