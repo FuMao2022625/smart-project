@@ -10,19 +10,6 @@ const VALID_ENV_STATUSES = ['NORMAL', 'WARNING', 'ALERT', 'EMERGENCY'];
 let dbPool = null;
 let dataBuffer = [];
 const BATCH_SIZE = 100;
-//数据库连接池配置
-// const DB_POOL_CONFIG = {
-//   host: 'localhost',
-//   user: 'root',
-//   password: '12305',
-//   database: 'kpl',
-//   charset: 'utf8mb4',
-//   waitForConnections: true,
-//   connectionLimit: 10,
-//   queueLimit: 0,
-//   connectTimeout: 10000,
-//   acquireTimeout: 10000
-// }
 const DB_POOL_CONFIG = {
   host: 'localhost',
   user: 'root',

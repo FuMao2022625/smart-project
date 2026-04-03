@@ -16,12 +16,13 @@ const reportsRouter = require('./reports');
 const qwenRouter = require('./qwen');
 const aiRouter = require('./ai');
 
-// 应用缓存中间件，缓存时间为10分钟
-router.use(cacheMiddleware(600));
+// SSE 路由不需要缓存
+router.use('/sse', sseRouter);
 
+// 其他路由应用缓存中间件，缓存时间为10分钟
+router.use(cacheMiddleware(600));
 router.use('/auth', authRouter);
 router.use('/robot', robotRouter);
-router.use('/sse', sseRouter);
 router.use('/environment', environmentRouter);
 router.use('/alerts', alertsRouter);
 router.use('/devices', devicesRouter);

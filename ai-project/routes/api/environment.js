@@ -11,7 +11,7 @@ const winston = require('../../config/logger');
 router.get('/data', cacheMiddleware(60), async (req, res) => {
   try {
     const [rows] = await db.query(
-      `SELECT temperature, humidity, smoke_level as pressure, record_time as timestamp
+      `SELECT device_id, temperature, humidity, smoke_level as pressure, record_time as timestamp
        FROM sensor_data
        ORDER BY record_time DESC
        LIMIT 1`
@@ -38,6 +38,7 @@ router.get('/data', cacheMiddleware(60), async (req, res) => {
       code: 200,
       message: 'success',
       data: {
+        deviceId: data.device_id,
         temperature: data.temperature,
         humidity: data.humidity,
         pressure: data.pressure,
@@ -85,7 +86,7 @@ router.get('/temperature-history', cacheMiddleware(300), async (req, res) => {
 
     // 3. 从数据库查询所有温度（不再按时间分组，交给后端按服务器时间分组）
     const [rows] = await db.query(
-      `SELECT temperature, record_time
+      `SELECT device_id, temperature, record_time
        FROM sensor_data
        WHERE temperature IS NOT NULL
        ORDER BY record_time DESC`
@@ -151,7 +152,7 @@ router.get('/data-list', async (req, res) => {
     }
     const offset = (page - 1) * pageSize;
     const [rows] = await db.query(
-      `SELECT id as dataId, 
+      `SELECT id as dataId, device_id,
        CASE 
          WHEN temperature IS NOT NULL THEN 'temperature' 
          WHEN humidity IS NOT NULL THEN 'humidity' 
@@ -180,6 +181,7 @@ router.get('/data-list', async (req, res) => {
         pageSize: parseInt(pageSize),
         items: rows.map(row => ({
           dataId: row.dataId.toString(),
+          deviceId: row.device_id,
           type: row.type,
           value: row.value,
           timestamp: row.timestamp.toISOString()
@@ -214,7 +216,7 @@ router.post('/export', async (req, res) => {
       whereClause += ' AND ' + type + ' IS NOT NULL';
     }
     const [rows] = await db.query(
-      `SELECT record_time as timestamp, temperature, humidity, smoke_level as pressure 
+      `SELECT device_id, record_time as timestamp, temperature, humidity, smoke_level as pressure 
        FROM sensor_data 
        ${whereClause} 
        ORDER BY record_time`,
@@ -236,6 +238,7 @@ router.post('/export', async (req, res) => {
           if (!worksheet) {
             worksheet = workbook.addWorksheet('环境数据');
             worksheet.columns = [
+              { header: '设备ID', key: 'device_id', width: 20 },
               { header: '时间', key: 'timestamp', width: 20 },
               { header: '温度(°C)', key: 'temperature', width: 15 },
               { header: '湿度(%)', key: 'humidity', width: 15 },
@@ -247,6 +250,7 @@ router.post('/export', async (req, res) => {
           workbook = new ExcelJS.Workbook();
           worksheet = workbook.addWorksheet('环境数据');
           worksheet.columns = [
+            { header: '设备ID', key: 'device_id', width: 20 },
             { header: '时间', key: 'timestamp', width: 20 },
             { header: '温度(°C)', key: 'temperature', width: 15 },
             { header: '湿度(%)', key: 'humidity', width: 15 },
@@ -257,6 +261,7 @@ router.post('/export', async (req, res) => {
         workbook = new ExcelJS.Workbook();
         worksheet = workbook.addWorksheet('环境数据')
         worksheet.columns = [
+          { header: '设备ID', key: 'device_id', width: 20 },
           { header: '时间', key: 'timestamp', width: 20 },
           { header: '温度(°C)', key: 'temperature', width: 15 },
           { header: '湿度(%)', key: 'humidity', width: 15 },
@@ -265,6 +270,7 @@ router.post('/export', async (req, res) => {
       }
       rows.forEach(row => {
         worksheet.addRow({
+          device_id: row.device_id,
           timestamp: row.timestamp.toISOString(),
           temperature: row.temperature,
           humidity: row.humidity,
@@ -292,10 +298,10 @@ router.post('/export', async (req, res) => {
       } 
       let csvContent = '';
       if (!fs.existsSync(filePath)) {
-        csvContent = '时间,温度(°C),湿度(%),烟雾浓度\n';
+        csvContent = '设备ID,时间,温度(°C),湿度(%),烟雾浓度\n';
       }
       rows.forEach(row => {
-        csvContent += `${row.timestamp.toISOString()},${row.temperature},${row.humidity},${row.pressure}\n`;
+        csvContent += `${row.device_id},${row.timestamp.toISOString()},${row.temperature},${row.humidity},${row.pressure}\n`;
       });
       fs.appendFileSync(filePath, csvContent);
       res.download(filePath, fileName, (err) => {
