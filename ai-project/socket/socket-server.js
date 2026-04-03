@@ -4,8 +4,8 @@ const winston = require('../config/logger');
 const dataProcessor = require('./data-processor');
 const pako = require('pako');
 const zlib = require('zlib');
-// const PORT=process.env.SOCKET_PORT || 443;
-// const HOST=process.env.SOCKET_HOST || '0.0.0.0';
+const PORT=process.env.SOCKET_PORT || 443;
+const HOST=process.env.SOCKET_HOST || '0.0.0.0';
 const SOCKET_TIMEOUT = parseInt(process.env.SOCKET_TIMEOUT) || 300000;
 const MAX_CONNECTIONS = parseInt(process.env.MAX_CONNECTIONS) || 1000;
 const clients = new Map();
@@ -187,6 +187,8 @@ function processBatch(clientId, clientInfo) {
   clientBatches.delete(clientId);
 }
 //处理直接数据
+
+
 function handleClientDataDirect(socket, clientId, clientInfo, data, retryCount = 0) {
   return new Promise(async (resolve) => {
     const startTime = Date.now();

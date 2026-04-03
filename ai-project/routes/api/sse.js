@@ -49,6 +49,7 @@ function buildSensorDataResponse(row) {
     battery: row.battery
   };
 }
+
 // 向所有客户端发送消息
 function sendToAllClients(message) {
   const messageStr = `data: ${JSON.stringify(message)}
@@ -96,7 +97,6 @@ router.get('/status', async (req, res) => {
 });
 // 获取最新传感器数据
 router.use(cors);
-// 获取最新传感器数据
 async function getLatestSensorData() {
   try {
     const [rows] = await db.query(
@@ -127,38 +127,38 @@ async function getLatestSensorData() {
     throw error;
   }
 }
-// 获取最新传感器数据
-// router.get('/latest-data', async (req, res) => {
-//   try {
-//     const data = await getLatestSensorData();
-//     if (!data) {
-//       logger.info('暂无传感器数据', { endpoint: '/latest-data' });
-//       return res.status(404).json({
-//         code: 404,
-//         message: '暂无数据',
-//         data: null,
-//         timestamp: new Date().toISOString()
-//       });
-//     }
-//     logger.info('获取最新传感器数据', { id: data.id, temperature: data.temperature });
-//     res.json({
-//       code: 200,
-//       message: 'success',
-//       data: data,
-//       timestamp: new Date().toISOString()
-//     });
-//   } catch (error) {
-//     logger.error('获取最新数据失败', { error: error.message, stack: error.stack, endpoint: '/latest-data' });
-//     res.status(500).json({
-//       code: 500,
-//       message: '服务器内部错误',
-//       data: null,
-//       error: error.message,
-//       timestamp: new Date().toISOString()
-//     });
-//   }
-// });
-//获取最新传感器数据
+
+router.get('/latest-data', async (req, res) => {
+  try {
+    const data = await getLatestSensorData();
+    if (!data) {
+      logger.info('暂无传感器数据', { endpoint: '/latest-data' });
+      return res.status(404).json({
+        code: 404,
+        message: '暂无数据',
+        data: null,
+        timestamp: new Date().toISOString()
+      });
+    }
+    logger.info('获取最新传感器数据', { id: data.id, temperature: data.temperature });
+    res.json({
+      code: 200,
+      message: 'success',
+      data: data,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    logger.error('获取最新数据失败', { error: error.message, stack: error.stack, endpoint: '/latest-data' });
+    res.status(500).json({
+      code: 500,
+      message: '服务器内部错误',
+      data: null,
+      error: error.message,
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
 //获取传感器历史数据路由
 router.get('/history', async (req, res) => {
   try {
@@ -238,6 +238,7 @@ router.get('/sensor-data', cors, async (req, res) => {
     logger.info('SSE 客户端断开连接', { clientCount: clients.size });
   });
 });
+
 // 定期检查数据库新数据
 async function checkForNewData() {
   try {
@@ -256,6 +257,9 @@ async function checkForNewData() {
     logger.error('检查新数据失败', { error: error.message });
   }
 }
+
+// 每2秒检查一次新数据
 setInterval(checkForNewData, 2000);
+
 // 导出路由
 module.exports = router;

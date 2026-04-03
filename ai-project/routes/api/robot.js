@@ -9,15 +9,40 @@ const formatDateToISO = (date) => {
   return new Date(date).toISOString();
 };
 
+const mapStatusToEnglish = (status) => {
+  const statusMap = {
+    '在线': 'online',
+    '离线': 'offline',
+    '维护中': 'maintenance',
+    '故障': 'error',
+    '巡检中': 'online',
+    'online': 'online',
+    'offline': 'offline',
+    'maintenance': 'maintenance',
+    'error': 'error'
+  };
+  return statusMap[status] || 'offline';
+};
+
+const mapStatusToChinese = (status) => {
+  const statusMap = {
+    'online': '在线',
+    'offline': '离线',
+    'maintenance': '维护中',
+    'error': '故障'
+  };
+  return statusMap[status] || status;
+};
+
 router.get('/positions', async (req, res) => {
   try {
-    const [rows] = await db.query('SELECT id as robotId, name as robotName, status, update_time as lastUpdate FROM robots WHERE status != "离线"');
+    const [rows] = await db.query('SELECT id as robotId, name as robotName, status, battery, update_time as lastUpdate FROM robots WHERE status != "offline"');
     const positions = rows.map(row => ({
       robotId: row.robotId,
       robotName: row.robotName,
       x: 0, 
       y: 0, 
-      status: row.status,
+      status: mapStatusToChinese(row.status),
       battery: row.battery || 100, 
       lastUpdate: formatDateToISO(row.lastUpdate)
     }));
@@ -44,7 +69,7 @@ router.get('/', async (req, res) => {
     if (status) {
       whereClause += whereClause ? ' AND ' : ' WHERE ';
       whereClause += 'status = ?';
-      params.push(status);
+      params.push(mapStatusToEnglish(status));
     }
     if (keyword) {
       whereClause += whereClause ? ' AND ' : ' WHERE ';
@@ -72,7 +97,7 @@ router.get('/', async (req, res) => {
           robotId: row.robotId,
           robotName: row.robotName,
           type: row.type,
-          status: row.status,
+          status: mapStatusToChinese(row.status),
           battery: row.battery || 100, 
           location: row.location,
           lastUpdate: formatDateToISO(row.lastUpdate)
@@ -103,7 +128,7 @@ router.post('/', async (req, res) => {
     const robotId = id;    
     await db.query(
       'INSERT INTO robots (id, name, type, model, location, manufacturer, install_date, status, battery) VALUES (?, ?, ?, ?, ?, ?, NOW(), ?, ?)',
-      [robotId, name, type || '未知', model || '未知', location, 'Unknown', status === '离线' ? 'offline' : status, battery]
+      [robotId, name, type || '未知', model || '未知', location, 'Unknown', mapStatusToEnglish(status), battery]
     );
     res.json({
       code: 200,
@@ -111,7 +136,7 @@ router.post('/', async (req, res) => {
       data: {
         robotId,
         name,
-        status,
+        status: mapStatusToChinese(status),
         battery
       }
     });
@@ -148,7 +173,7 @@ router.put('/:robotId', async (req, res) => {
     }
     await db.query(
       'UPDATE robots SET name = ?, type = COALESCE(?, type), model = COALESCE(?, model), location = ?, status = COALESCE(?, status), battery = COALESCE(?, battery) WHERE id = ?',
-      [name, type, model, location, status, battery, robotId]
+      [name, type, model, location, status ? mapStatusToEnglish(status) : null, battery, robotId]
     )
     res.json({
       code: 200,
