@@ -49,7 +49,6 @@ function buildSensorDataResponse(row) {
     battery: row.battery
   };
 }
-
 // 向所有客户端发送消息
 function sendToAllClients(message) {
   const messageStr = `data: ${JSON.stringify(message)}
@@ -113,7 +112,6 @@ async function getLatestSensorData() {
         timestamp: new Date().toISOString()
       };
       cacheTime = now;
-      logger.debug('获取最新传感器数据', { id: sensorData.id });
       return dataCache;
     } else {
       const now = Date.now();
@@ -127,7 +125,7 @@ async function getLatestSensorData() {
     throw error;
   }
 }
-
+//最新数据路由
 router.get('/latest-data', async (req, res) => {
   try {
     const data = await getLatestSensorData();
@@ -140,14 +138,14 @@ router.get('/latest-data', async (req, res) => {
         timestamp: new Date().toISOString()
       });
     }
-    logger.info('获取最新传感器数据', { id: data.id, temperature: data.temperature });
     res.json({
       code: 200,
       message: 'success',
       data: data,
       timestamp: new Date().toISOString()
     });
-  } catch (error) {
+  }
+  catch (error) {
     logger.error('获取最新数据失败', { error: error.message, stack: error.stack, endpoint: '/latest-data' });
     res.status(500).json({
       code: 500,
@@ -158,7 +156,6 @@ router.get('/latest-data', async (req, res) => {
     });
   }
 });
-
 //获取传感器历史数据路由
 router.get('/history', async (req, res) => {
   try {
@@ -238,7 +235,6 @@ router.get('/sensor-data', cors, async (req, res) => {
     logger.info('SSE 客户端断开连接', { clientCount: clients.size });
   });
 });
-
 // 定期检查数据库新数据
 async function checkForNewData() {
   try {
@@ -257,9 +253,7 @@ async function checkForNewData() {
     logger.error('检查新数据失败', { error: error.message });
   }
 }
-
 // 每2秒检查一次新数据
 setInterval(checkForNewData, 2000);
-
 // 导出路由
 module.exports = router;

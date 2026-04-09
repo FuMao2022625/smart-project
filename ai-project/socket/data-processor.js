@@ -10,6 +10,18 @@ const VALID_ENV_STATUSES = ['NORMAL', 'WARNING', 'ALERT', 'EMERGENCY'];
 let dbPool = null;
 let dataBuffer = [];
 const BATCH_SIZE = 100;
+//  const DB_POOL_CONFIG = {
+//   host: 'localhost',
+//   user: 'root',
+//   password: '12305',
+//   database: 'kpl',
+//   charset: 'utf8mb4',
+//   waitForConnections: true,
+//   connectionLimit: 10,
+//   queueLimit: 0,
+//   connectTimeout: 10000,
+//   acquireTimeout: 10000
+// };
 const DB_POOL_CONFIG = {
   host: 'localhost',
   user: 'root',
@@ -79,11 +91,17 @@ async function initializeDatabase() {
     }
   }
 }
-// 记录日志
+// 记录日志 - 只保存异常日志（ERROR, WARNING）
 async function log(level, message) {
   const timestamp = new Date().toISOString();
   const logMessage = `[${timestamp}] [${level}] ${message}\n`;
   console.log(logMessage.trim());
+
+  // 只保存 ERROR 和 WARNING 级别的日志
+  if (level !== 'ERROR' && level !== 'WARNING') {
+    return;
+  }
+
   const logFile = path.join(LOG_DIR, `processor_${getDateString()}.log`);
   try {
     await fs.promises.appendFile(logFile, logMessage, 'utf8');
@@ -107,15 +125,24 @@ function getDbConnection() {
 // 处理原始数据
 async function processRawData(rawData, clientInfo) {
   const processingId = getTimestampString();
-  await log('INFO', `开始处理数据 [ID: ${processingId}] 来自客户端: ${clientInfo}`);
+
+  // 打印机器人发来的数据到控制台（始终打印）
+  console.log(clientInfo);
+  console.log(rawData);
   try {
     const dataStorage = require('./data-storage');
-    const dataValidator = require('./data-validator');   
-    await dataStorage.saveRawData(rawData, processingId, clientInfo);
+    const dataValidator = require('./data-validator');
+
+    // 先解析和验证数据
     const parsedData = await dataValidator.parseAndValidateData(rawData, processingId);
+
+    // 保存到数据库（所有数据都保存到数据库）
     await dataStorage.saveToDatabase(parsedData, processingId);
+
+    // 只保存异常数据到文件
+    await dataStorage.saveRawData(rawData, processingId, clientInfo, parsedData);
     await dataStorage.saveProcessedData(parsedData, processingId);
-    await log('INFO', `数据处理完成 [ID: ${processingId}]`);
+
     return { success: true, processingId, data: parsedData };
   } catch (error) {
     await log('ERROR', `数据处理失败 [ID: ${processingId}]: ${error.message}`);

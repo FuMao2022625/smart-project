@@ -1,15 +1,15 @@
 const axios = require('axios');
 const https = require('https');
-
+// Qwen API 配置
 const qwenConfig = {
   apiKey: process.env.QWEN_API_KEY,
   openAiCompatible: process.env.QWEN_OPENAI_COMPATIBLE
 };
-
+// 忽略证书验证
 const httpsAgent = new https.Agent({
   rejectUnauthorized: false
 });
-
+// 智能服务
 class AIService {
   // 环境数据预测
   static async predictEnvironmentalData(data) {

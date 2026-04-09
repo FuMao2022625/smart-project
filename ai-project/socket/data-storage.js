@@ -1,16 +1,40 @@
- const fs = require('fs');
+const fs = require('fs');
 const path = require('path');
 const dataProcessor = require('./data-processor');
-// 保存原始数据
-async function saveRawData(rawData, processingId, clientInfo) {
-  const dateStr = new Date().toISOString().split('T')[0]; 
+// 判断是否为异常数据
+function isAbnormalData(parsedData) {
+  if (!parsedData) return false;
+
+  // 火灾风险 HIGH (2) 或 CRITICAL (3) 视为异常
+  const fireRisk = parsedData.fireRisk;
+  if (fireRisk === 2 || fireRisk === 3) {
+    return true;
+  }
+
+  // 环境状态 ALERT (2) 或 EMERGENCY (3) 视为异常
+  const envStatus = parsedData.envStatus;
+  if (envStatus === '2' || envStatus === '3' || envStatus === 2 || envStatus === 3) {
+    return true;
+  }
+
+  return false;
+}
+// 保存原始数据 - 只保存异常数据
+async function saveRawData(rawData, processingId, clientInfo, parsedData = null) {
+  // 如果不是异常数据，则不保存
+  if (!parsedData || !isAbnormalData(parsedData)) {
+    return;
+  }
+
+  const dateStr = new Date().toISOString().split('T')[0];
   const rawFilePath = path.join(dataProcessor.RAW_DATA_DIR, `${dateStr}.json`);
   const rawRecord = {
     processingId,
     timestamp: new Date().toISOString(),
     clientInfo,
     rawData: rawData.toString(),
-    dataSize: rawData.length
+    dataSize: rawData.length,
+    abnormalType: parsedData.fireRisk >= 2 ? 'FIRE_RISK' : 'ENV_STATUS'
   };
   let existingData = [];
   try {
@@ -29,19 +53,25 @@ async function saveRawData(rawData, processingId, clientInfo) {
     }
     existingData.push(rawRecord);
     await fs.promises.writeFile(rawFilePath, JSON.stringify(existingData, null, 2), 'utf8');
-    await dataProcessor.log('INFO', `原始数据已保存到: ${rawFilePath}`);
+    await dataProcessor.log('WARNING', `异常原始数据已保存到: ${rawFilePath}`);
   } catch (error) {
     await dataProcessor.log('ERROR', `保存原始数据失败: ${error.message}`);
   }
 }
-// 保存处理后的数据
+// 保存处理后的数据 - 只保存异常数据
 async function saveProcessedData(processedData, processingId) {
-  const dateStr = new Date().toISOString().split('T')[0]; 
-  const processedFilePath = path.join(dataProcessor.PROCESSED_DATA_DIR, `${dateStr}.json`); 
+  // 如果不是异常数据，则不保存
+  if (!isAbnormalData(processedData)) {
+    return;
+  }
+
+  const dateStr = new Date().toISOString().split('T')[0];
+  const processedFilePath = path.join(dataProcessor.PROCESSED_DATA_DIR, `${dateStr}.json`);
   const processedRecord = {
     processingId,
     timestamp: new Date().toISOString(),
-    data: processedData
+    data: processedData,
+    abnormalType: processedData.fireRisk >= 2 ? 'FIRE_RISK' : 'ENV_STATUS'
   };
   let existingData = [];
   try {
@@ -60,7 +90,7 @@ async function saveProcessedData(processedData, processingId) {
     }
     existingData.push(processedRecord);
     await fs.promises.writeFile(processedFilePath, JSON.stringify(existingData, null, 2), 'utf8');
-    await dataProcessor.log('INFO', `处理后的数据已保存到: ${processedFilePath}`);
+    await dataProcessor.log('WARNING', `异常处理数据已保存到: ${processedFilePath}`);
   } catch (error) {
     await dataProcessor.log('ERROR', `保存处理数据失败: ${error.message}`);
   }

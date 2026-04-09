@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "socket-server": "node socket-server/server.js",
+    "socket-server": "node socket/socket-server.js",
     "db:optimize": "node scripts/run-optimization.js optimize",
     "db:backup": "node scripts/run-optimization.js backup",
     "db:status": "node scripts/run-optimization.js status",

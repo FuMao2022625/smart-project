@@ -4,8 +4,10 @@ const winston = require('../config/logger');
 const dataProcessor = require('./data-processor');
 const pako = require('pako');
 const zlib = require('zlib');
-const PORT=process.env.SOCKET_PORT || 443;
-const HOST=process.env.SOCKET_HOST || '0.0.0.0';
+// const PORT=process.env.SOCKET_PORT||8888;
+// const HOST=process.env.SOCKET_HOST||'0.0.0.0';
+const PORT=process.env.SOCKET_PORT||8888;
+const HOST=process.env.SOCKET_HOST||'0.0.0.0';
 const SOCKET_TIMEOUT = parseInt(process.env.SOCKET_TIMEOUT) || 300000;
 const MAX_CONNECTIONS = parseInt(process.env.MAX_CONNECTIONS) || 1000;
 const clients = new Map();
@@ -148,12 +150,12 @@ function recordPerformanceMetrics(startTime, success, dataReceived, dataSent) {
   
   performanceMetrics.avgResponseTime = performanceMetrics.responseTimes.reduce((sum, time) => sum + time, 0) / performanceMetrics.responseTimes.length;
 }
-// 记录性能指标
+//记录性能指标
 function logPerformanceMetrics() {
   const uptime = Math.floor((Date.now() - performanceMetrics.startTime) / 1000);
   const requestsPerSecond = performanceMetrics.totalRequests / uptime;
   const successRate = performanceMetrics.totalRequests > 0 ? (performanceMetrics.successfulRequests / performanceMetrics.totalRequests) * 100 : 0;
-  
+
   logger.info('='.repeat(80));
   logger.info('性能监控指标');
   logger.info('='.repeat(80));
@@ -174,20 +176,24 @@ function logPerformanceMetrics() {
   logger.info('='.repeat(80));
 }
 //处理批量数据
+// function processBatch(clientId, clientInfo) {
+//   const batch = clientBatches.get(clientId);
+//   if (!batch || batch.length === 0) return;
+//   logger.info(`处理客户端 #${clientId} 的批量数据，共 ${batch.length} 条`, { clientInfo });
+//   batch.forEach(data => {
+//     handleClientDataDirect(data.socket, clientId, clientInfo, data.data);
+//   });
+//   clientBatches.delete(clientId);
+// }
 function processBatch(clientId, clientInfo) {
   const batch = clientBatches.get(clientId);
   if (!batch || batch.length === 0) return;
-
   logger.info(`处理客户端 #${clientId} 的批量数据，共 ${batch.length} 条`, { clientInfo });
-
   batch.forEach(data => {
     handleClientDataDirect(data.socket, clientId, clientInfo, data.data);
   });
-
   clientBatches.delete(clientId);
 }
-//处理直接数据
-
 
 function handleClientDataDirect(socket, clientId, clientInfo, data, retryCount = 0) {
   return new Promise(async (resolve) => {
@@ -539,23 +545,18 @@ server.listen(PORT, HOST, () => {
   logger.info(`监听地址: ${HOST}:${PORT}`);
   logger.info(`等待客户端连接...`);
   logger.info('='.repeat(60));
-  
   setInterval(() => {
     clients.forEach((clientData, clientId) => {
       sendHeartbeat(clientId, clientData);
     });
   }, HEARTBEAT_INTERVAL);
-  
   setInterval(() => {
     checkHeartbeatTimeouts();
   }, HEARTBEAT_INTERVAL * 2);
-  
   logger.info(`心跳机制已启动，间隔: ${HEARTBEAT_INTERVAL}ms, 超时: ${HEARTBEAT_TIMEOUT}ms`);
-  
   setInterval(() => {
     logPerformanceMetrics();
   }, METRICS_INTERVAL);
-  
   logger.info(`性能监控已启动，间隔: ${METRICS_INTERVAL}ms`);
 });
 // 处理客户端连接

@@ -1,4 +1,8 @@
--- alarms: table
+--  创建数据库
+create database kpl;
+--  使用数据库
+use kpl;
+
 CREATE TABLE `alarms` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '报警ID',
   `alarm_item` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '报警项',
@@ -24,19 +28,6 @@ CREATE TABLE `alarms` (
   CONSTRAINT `alarms_chk_2` CHECK ((`status` in (_utf8mb4'pending',_utf8mb4'resolved')))
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='报警信息表';
 
--- No native definition for element: idx_level_alarm_time (index)
-
--- No native definition for element: idx_level (index)
-
--- No native definition for element: idx_device_id (index)
-
--- No native definition for element: idx_alarm_time (index)
-
--- No native definition for element: idx_status_alarm_time (index)
-
--- No native definition for element: idx_status (index)
-
--- audit_logs: table
 CREATE TABLE `audit_logs` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '日志ID',
   `user_id` int DEFAULT NULL COMMENT '操作用户ID',
@@ -54,16 +45,6 @@ CREATE TABLE `audit_logs` (
   KEY `idx_create_time` (`create_time`) USING BTREE,
   CONSTRAINT `fk_audit_logs_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='审计日志表';
-
--- No native definition for element: idx_user_id (index)
-
--- No native definition for element: idx_action (index)
-
--- No native definition for element: idx_resource_type (index)
-
--- No native definition for element: idx_create_time (index)
-
--- devices: table
 CREATE TABLE `devices` (
   `id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '设备ID',
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '设备名称',
@@ -88,20 +69,6 @@ CREATE TABLE `devices` (
   KEY `idx_devices_status` (`status`),
   CONSTRAINT `devices_chk_1` CHECK ((`status` in (_utf8mb4'online',_utf8mb4'offline',_utf8mb4'maintenance',_utf8mb4'error')))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='设备信息表';
-
--- No native definition for element: idx_type_id (index)
-
--- No native definition for element: idx_location (index)
-
--- No native definition for element: idx_status_location (index)
-
--- No native definition for element: idx_devices_status (index)
-
--- No native definition for element: idx_status (index)
-
--- No native definition for element: idx_update_time (index)
-
--- messages: table
 CREATE TABLE `messages` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '消息ID',
   `user_id` int DEFAULT NULL COMMENT '接收用户ID',
@@ -123,17 +90,6 @@ CREATE TABLE `messages` (
   CONSTRAINT `messages_chk_2` CHECK ((`status` in (_utf8mb4'unread',_utf8mb4'read')))
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='系统消息表';
 
--- No native definition for element: idx_user_status (index)
-
--- No native definition for element: idx_user_id (index)
-
--- No native definition for element: idx_type (index)
-
--- No native definition for element: idx_status (index)
-
--- No native definition for element: idx_create_time (index)
-
--- reports: table
 CREATE TABLE `reports` (
   `id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '报告ID',
   `type` enum('daily','weekly','monthly','custom') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '报告类型',
@@ -152,14 +108,6 @@ CREATE TABLE `reports` (
   CONSTRAINT `reports_chk_1` CHECK ((`type` in (_utf8mb4'daily',_utf8mb4'weekly',_utf8mb4'monthly',_utf8mb4'custom'))),
   CONSTRAINT `reports_chk_2` CHECK ((`status` in (_utf8mb4'generating',_utf8mb4'completed',_utf8mb4'failed')))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='报告生成表';
-
--- No native definition for element: idx_type (index)
-
--- No native definition for element: idx_date_range (index)
-
--- No native definition for element: idx_status (index)
-
--- robots: table
 CREATE TABLE `robots` (
   `id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '机器人ID',
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '机器人名称',
@@ -180,18 +128,6 @@ CREATE TABLE `robots` (
   KEY `idx_location` (`location`) USING BTREE,
   KEY `idx_update_time` (`update_time`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='机器人信息表';
-
--- No native definition for element: idx_name (index)
-
--- No native definition for element: idx_type (index)
-
--- No native definition for element: idx_location (index)
-
--- No native definition for element: idx_status (index)
-
--- No native definition for element: idx_update_time (index)
-
--- roles: table
 CREATE TABLE `roles` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '角色ID',
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '角色名称',
@@ -203,7 +139,6 @@ CREATE TABLE `roles` (
   UNIQUE KEY `uk_role_name` (`name`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='系统角色表';
 
--- sensor_data: table
 CREATE TABLE `sensor_data` (
   `id` int NOT NULL AUTO_INCREMENT,
   `device_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '设备ID',
@@ -226,36 +161,7 @@ CREATE TABLE `sensor_data` (
   KEY `idx_record_time_type` (`record_time`,`type`) USING BTREE,
   KEY `idx_sensor_record_time` (`record_time`),
   KEY `idx_sensor_device_id` (`device_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10219 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='传感器数据表'
-/*!50100 PARTITION BY RANGE (to_days(`record_time`))
-(PARTITION p202604 VALUES LESS THAN (740102) ENGINE = InnoDB,
- PARTITION p202605 VALUES LESS THAN (740133) ENGINE = InnoDB,
- PARTITION p202606 VALUES LESS THAN (740163) ENGINE = InnoDB,
- PARTITION p202607 VALUES LESS THAN (740194) ENGINE = InnoDB,
- PARTITION p202608 VALUES LESS THAN (740225) ENGINE = InnoDB,
- PARTITION p202609 VALUES LESS THAN (740255) ENGINE = InnoDB,
- PARTITION p202610 VALUES LESS THAN (740286) ENGINE = InnoDB,
- PARTITION p202611 VALUES LESS THAN (740316) ENGINE = InnoDB,
- PARTITION p202612 VALUES LESS THAN (740347) ENGINE = InnoDB,
- PARTITION p202701 VALUES LESS THAN (740378) ENGINE = InnoDB,
- PARTITION p202702 VALUES LESS THAN (740406) ENGINE = InnoDB,
- PARTITION p_future VALUES LESS THAN MAXVALUE ENGINE = InnoDB) */;
-
--- No native definition for element: idx_device_id (index)
-
--- No native definition for element: idx_sensor_device_id (index)
-
--- No native definition for element: idx_type (index)
-
--- No native definition for element: idx_record_time_device (index)
-
--- No native definition for element: idx_record_time_type (index)
-
--- No native definition for element: idx_record_time (index)
-
--- No native definition for element: idx_sensor_record_time (index)
-
--- users: table
+) ENGINE=InnoDB AUTO_INCREMENT=10219 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='传感器数据表';
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '用户ID',
   `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户名',
@@ -281,11 +187,3 @@ CREATE TABLE `users` (
   KEY `idx_users_email` (`email`),
   CONSTRAINT `fk_users_role_id` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=313 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='系统用户表';
-
--- No native definition for element: idx_users_email (index)
-
--- No native definition for element: idx_role_id (index)
-
--- No native definition for element: idx_status (index)
-
--- No native definition for element: idx_last_login_time (index)
