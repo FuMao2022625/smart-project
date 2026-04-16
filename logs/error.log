@@ -2139,9 +2139,3 @@
 {"level":"error","message":"客户端 #2 (192.168.1.117:10511) 连接错误","metadata":{"errorCode":"ECONNRESET","errorMessage":"read ECONNRESET"},"service":"ai-project","timestamp":"2026-04-13 21:11:04.207"}
 {"level":"error","message":"客户端 #1 (192.168.1.117:14682) 连接错误","metadata":{"errorCode":"ERR_STREAM_WRITE_AFTER_END","errorMessage":"write after end"},"service":"ai-project","timestamp":"2026-04-13 21:16:15.337"}
 {"level":"error","message":"客户端 #2 (192.168.1.117:25934) 连接错误","metadata":{"errorCode":"ECONNRESET","errorMessage":"read ECONNRESET"},"service":"ai-project","timestamp":"2026-04-13 21:18:12.745"}
-{"level":"error","message":"客户端 #1 (192.168.1.103:48300) 连接错误","metadata":{"errorCode":"ERR_STREAM_WRITE_AFTER_END","errorMessage":"write after end"},"service":"ai-project","timestamp":"2026-04-15 20:21:33.971"}
-{"level":"error","message":"客户端 #2 (192.168.1.103:8507) 连接错误","metadata":{"errorCode":"ERR_STREAM_WRITE_AFTER_END","errorMessage":"write after end"},"service":"ai-project","timestamp":"2026-04-15 20:23:33.991"}
-{"level":"error","message":"客户端 #3 (192.168.1.103:38120) 连接错误","metadata":{"errorCode":"ECONNRESET","errorMessage":"read ECONNRESET"},"service":"ai-project","timestamp":"2026-04-15 20:25:34.011"}
-{"level":"error","message":"客户端 #4 (192.168.1.103:22086) 连接错误","metadata":{"errorCode":"ECONNRESET","errorMessage":"read ECONNRESET"},"service":"ai-project","timestamp":"2026-04-15 20:27:04.039"}
-{"level":"error","message":"客户端 #7 (192.168.1.103:40595) 连接错误","metadata":{"errorCode":"ECONNRESET","errorMessage":"read ECONNRESET"},"service":"ai-project","timestamp":"2026-04-15 20:34:04.277"}
-{"level":"error","message":"客户端 #10 (192.168.1.103:32291) 连接错误","metadata":{"errorCode":"ECONNRESET","errorMessage":"read ECONNRESET"},"service":"ai-project","timestamp":"2026-04-15 21:02:53.549"}

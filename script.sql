@@ -1,4 +1,3 @@
-select  * from sensor_data order by id desc limit 1;
 --  创建数据库
 create database kpl;
 --  使用数据库

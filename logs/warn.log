@@ -2277,25 +2277,3 @@
 {"level":"warn","message":"CPU负载过高:","metadata":{"15min":1.03,"1min":1.06,"5min":1.24},"service":"ai-project","timestamp":"2026-04-13 21:20:39.493"}
 {"level":"warn","message":"CPU负载过高:","metadata":{"15min":1.03,"1min":1.06,"5min":1.24},"service":"ai-project","timestamp":"2026-04-13 21:20:39.543"}
 {"level":"warn","message":"客户端 #1 心跳超时，断开连接","metadata":{"clientInfo":"192.168.1.117:20094","timeSinceLastReceived":149998},"service":"ai-project","timestamp":"2026-04-13 21:22:21.396"}
-{"level":"warn","message":"API响应时间过长:","metadata":{"cpu":{"15min":0,"1min":0,"5min":0},"memory":{"external":3.62,"heapTotal":26.78,"heapUsed":23.8,"rss":72.59},"method":"POST","path":"/chat","responseTime":36362,"status":200},"service":"ai-project","timestamp":"2026-04-15 19:14:05.843"}
-{"level":"warn","message":"API响应时间过长:","metadata":{"cpu":{"15min":0,"1min":0,"5min":0},"memory":{"external":3.66,"heapTotal":27.28,"heapUsed":24.26,"rss":73.75},"method":"POST","path":"/chat","responseTime":63292,"status":200},"service":"ai-project","timestamp":"2026-04-15 19:19:28.146"}
-{"level":"warn","message":"API响应时间过长:","metadata":{"cpu":{"15min":0,"1min":0,"5min":0},"memory":{"external":3.69,"heapTotal":29.03,"heapUsed":25.24,"rss":74.65},"method":"POST","path":"/chat","responseTime":2493,"status":200},"service":"ai-project","timestamp":"2026-04-15 19:19:51.389"}
-{"level":"warn","message":"客户端 #1 心跳超时，断开连接","metadata":{"clientInfo":"192.168.1.103:48300","timeSinceLastReceived":90013},"service":"ai-project","timestamp":"2026-04-15 20:21:33.955"}
-{"level":"error","message":"客户端 #1 (192.168.1.103:48300) 连接错误","metadata":{"errorCode":"ERR_STREAM_WRITE_AFTER_END","errorMessage":"write after end"},"service":"ai-project","timestamp":"2026-04-15 20:21:33.971"}
-{"level":"warn","message":"客户端 #1 (192.168.1.103:48300) 连接异常关闭","metadata":{"currentConnections":-1},"service":"ai-project","timestamp":"2026-04-15 20:21:33.975"}
-{"level":"warn","message":"客户端 #2 心跳超时，断开连接","metadata":{"clientInfo":"192.168.1.103:8507","timeSinceLastReceived":90010},"service":"ai-project","timestamp":"2026-04-15 20:23:33.976"}
-{"level":"error","message":"客户端 #2 (192.168.1.103:8507) 连接错误","metadata":{"errorCode":"ERR_STREAM_WRITE_AFTER_END","errorMessage":"write after end"},"service":"ai-project","timestamp":"2026-04-15 20:23:33.991"}
-{"level":"warn","message":"客户端 #2 (192.168.1.103:8507) 连接异常关闭","metadata":{"currentConnections":-1},"service":"ai-project","timestamp":"2026-04-15 20:23:33.997"}
-{"level":"error","message":"客户端 #3 (192.168.1.103:38120) 连接错误","metadata":{"errorCode":"ECONNRESET","errorMessage":"read ECONNRESET"},"service":"ai-project","timestamp":"2026-04-15 20:25:34.011"}
-{"level":"warn","message":"客户端 #3 (192.168.1.103:38120) 连接异常关闭","metadata":{"currentConnections":0},"service":"ai-project","timestamp":"2026-04-15 20:25:34.012"}
-{"level":"error","message":"客户端 #4 (192.168.1.103:22086) 连接错误","metadata":{"errorCode":"ECONNRESET","errorMessage":"read ECONNRESET"},"service":"ai-project","timestamp":"2026-04-15 20:27:04.039"}
-{"level":"warn","message":"客户端 #4 (192.168.1.103:22086) 连接异常关闭","metadata":{"currentConnections":-1},"service":"ai-project","timestamp":"2026-04-15 20:27:04.041"}
-{"level":"warn","message":"客户端 #5 心跳超时，断开连接","metadata":{"clientInfo":"192.168.1.103:11898","timeSinceLastReceived":119992},"service":"ai-project","timestamp":"2026-04-15 20:29:34.025"}
-{"level":"warn","message":"客户端 #6 心跳超时，断开连接","metadata":{"clientInfo":"192.168.1.103:16123","timeSinceLastReceived":149985},"service":"ai-project","timestamp":"2026-04-15 20:32:34.052"}
-{"level":"error","message":"客户端 #7 (192.168.1.103:40595) 连接错误","metadata":{"errorCode":"ECONNRESET","errorMessage":"read ECONNRESET"},"service":"ai-project","timestamp":"2026-04-15 20:34:04.277"}
-{"level":"warn","message":"客户端 #7 (192.168.1.103:40595) 连接异常关闭","metadata":{"currentConnections":-1},"service":"ai-project","timestamp":"2026-04-15 20:34:04.280"}
-{"level":"warn","message":"API响应时间过长:","metadata":{"cpu":{"15min":0,"1min":0,"5min":0},"memory":{"external":3.96,"heapTotal":37.34,"heapUsed":28.56,"rss":89.91},"method":"POST","path":"/query","responseTime":17047,"status":200},"service":"ai-project","timestamp":"2026-04-15 20:47:37.451"}
-{"level":"warn","message":"客户端 #8 心跳超时，断开连接","metadata":{"clientInfo":"192.168.1.103:29995","timeSinceLastReceived":119711},"service":"ai-project","timestamp":"2026-04-15 20:59:34.248"}
-{"level":"warn","message":"客户端 #9 心跳超时，断开连接","metadata":{"clientInfo":"192.168.1.103:7163","timeSinceLastReceived":119713},"service":"ai-project","timestamp":"2026-04-15 21:01:34.274"}
-{"level":"error","message":"客户端 #10 (192.168.1.103:32291) 连接错误","metadata":{"errorCode":"ECONNRESET","errorMessage":"read ECONNRESET"},"service":"ai-project","timestamp":"2026-04-15 21:02:53.549"}
-{"level":"warn","message":"客户端 #10 (192.168.1.103:32291) 连接异常关闭","metadata":{"currentConnections":-1},"service":"ai-project","timestamp":"2026-04-15 21:02:53.552"}

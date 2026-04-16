@@ -173,6 +173,7 @@ function logPerformanceMetrics() {
   logger.info(`已关闭连接数: ${connectionPool.connectionStats.closedConnections}`);
   logger.info('='.repeat(80));
 }
+//处理批量数据
 function processBatch(clientId, clientInfo) {
   const batch = clientBatches.get(clientId);
   if (!batch || batch.length === 0) return;
@@ -182,17 +183,7 @@ function processBatch(clientId, clientInfo) {
   });
   clientBatches.delete(clientId);
 }
-//处理批量数据
-// function processBatch(clientId, clientInfo) {
-//   const batch = clientBatches.get(clientId);
-//   if (!batch || batch.length === 0) return;
-//   logger.info(`处理客户端 #${clientId} 的批量数据，共 ${batch.length} 条`, { clientInfo });
-//   batch.forEach(data => {
-//     handleClientDataDirect(data.socket, clientId, clientInfo, data.data);
-//   });
-//   clientBatches.delete(clientId);
-// }
-
+//处理客户端数据
 function handleClientDataDirect(socket, clientId, clientInfo, data, retryCount = 0) {
   return new Promise(async (resolve) => {
     const startTime = Date.now();

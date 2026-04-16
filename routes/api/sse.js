@@ -125,6 +125,7 @@ async function getLatestSensorData() {
     throw error;
   }
 }
+//最新数据路由
 router.get('/latest-data', async (req, res) => {
   try {
     const data = await getLatestSensorData();
@@ -141,7 +142,8 @@ router.get('/latest-data', async (req, res) => {
       code: 200,
       message: 'success',
       data: data,
-    })
+      timestamp: new Date().toISOString()
+    });
   }
   catch (error) {
     logger.error('获取最新数据失败', { error: error.message, stack: error.stack, endpoint: '/latest-data' });
@@ -154,37 +156,6 @@ router.get('/latest-data', async (req, res) => {
     });
   }
 });
-//最新数据路由
-// router.get('/latest-data', async (req, res) => {
-//   try {
-//     const data = await getLatestSensorData();
-//     if (!data) {
-//       logger.info('暂无传感器数据', { endpoint: '/latest-data' });
-//       return res.status(404).json({
-//         code: 404,
-//         message: '暂无数据',
-//         data: null,
-//         timestamp: new Date().toISOString()
-//       });
-//     }
-//     res.json({
-//       code: 200,
-//       message: 'success',
-//       data: data,
-//       timestamp: new Date().toISOString()
-//     });
-//   }
-//   catch (error) {
-//     logger.error('获取最新数据失败', { error: error.message, stack: error.stack, endpoint: '/latest-data' });
-//     res.status(500).json({
-//       code: 500,
-//       message: '服务器内部错误',
-//       data: null,
-//       error: error.message,
-//       timestamp: new Date().toISOString()
-//     });
-//   }
-// });
 //获取传感器历史数据路由
 router.get('/history', async (req, res) => {
   try {
