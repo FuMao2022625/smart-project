@@ -1,45 +1,20 @@
-const winston = require('../config/logger');
-const cacheService = require('../services/cacheService');
+// 移除所有缓存限制
 
+// 直接通过所有请求，不进行任何缓存
 const cacheMiddleware = (ttl = 3600) => {
   return async (req, res, next) => {
-    try {
-      // 只缓存GET请求
-      if (req.method !== 'GET') {
-        return next();
-      }
-      
-      const cacheKey = `api:${req.method}:${req.originalUrl}`;
-      const cachedData = cacheService.get(cacheKey);
-      
-      if (cachedData) {
-        winston.debug('缓存命中:', cacheKey);
-        return res.json(cachedData);
-      }
-      
-      const originalJson = res.json;
-      res.json = function(data) {
-        // 只缓存成功的响应
-        if (res.statusCode >= 200 && res.statusCode < 300) {
-          cacheService.set(cacheKey, data, ttl);
-        }
-        return originalJson.call(this, data);
-      };
-      
-      next();
-    } catch (error) {
-      winston.error('缓存中间件错误:', error);
-      next();
-    }
+    // 直接通过，不进行任何缓存操作
+    next();
   };
 };
 
+// 保留缓存清理功能，但实际上不执行任何操作
 const clearCache = (pattern) => {
-  return cacheService.deleteByPrefix(pattern);
+  return Promise.resolve(true);
 };
 
 const clearApiCache = () => {
-  return cacheService.deleteByPrefix('api');
+  return Promise.resolve(true);
 };
 
 module.exports = {

@@ -2277,3 +2277,9 @@
 {"level":"warn","message":"CPU负载过高:","metadata":{"15min":1.03,"1min":1.06,"5min":1.24},"service":"ai-project","timestamp":"2026-04-13 21:20:39.493"}
 {"level":"warn","message":"CPU负载过高:","metadata":{"15min":1.03,"1min":1.06,"5min":1.24},"service":"ai-project","timestamp":"2026-04-13 21:20:39.543"}
 {"level":"warn","message":"客户端 #1 心跳超时，断开连接","metadata":{"clientInfo":"192.168.1.117:20094","timeSinceLastReceived":149998},"service":"ai-project","timestamp":"2026-04-13 21:22:21.396"}
+{"level":"warn","message":"客户端 #1 心跳超时，断开连接","metadata":{"clientInfo":"192.168.1.105:21503","timeSinceLastReceived":119995},"service":"ai-project","timestamp":"2026-04-16 20:07:26.426"}
+{"level":"error","message":"客户端 #1 (192.168.1.105:21503) 连接错误","metadata":{"errorCode":"ERR_STREAM_WRITE_AFTER_END","errorMessage":"write after end"},"service":"ai-project","timestamp":"2026-04-16 20:07:26.474"}
+{"level":"warn","message":"客户端 #1 (192.168.1.105:21503) 连接异常关闭","metadata":{"currentConnections":-1},"service":"ai-project","timestamp":"2026-04-16 20:07:26.480"}
+{"level":"warn","message":"客户端 #2 心跳超时，断开连接","metadata":{"clientInfo":"192.168.1.105:27978","timeSinceLastReceived":149978},"service":"ai-project","timestamp":"2026-04-16 20:10:26.453"}
+{"level":"error","message":"客户端 #2 (192.168.1.105:27978) 连接错误","metadata":{"errorCode":"ERR_STREAM_WRITE_AFTER_END","errorMessage":"write after end"},"service":"ai-project","timestamp":"2026-04-16 20:10:26.516"}
+{"level":"warn","message":"客户端 #2 (192.168.1.105:27978) 连接异常关闭","metadata":{"currentConnections":-1},"service":"ai-project","timestamp":"2026-04-16 20:10:26.520"}

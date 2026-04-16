@@ -22074,3 +22074,252 @@
 {"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.117:19485"},"service":"ai-project","timestamp":"2026-04-13 21:25:03.017"}
 {"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.117:19485"},"service":"ai-project","timestamp":"2026-04-13 21:25:05.881"}
 {"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.117:19485"},"service":"ai-project","timestamp":"2026-04-13 21:25:08.905"}
+{"level":"info","message":"Cache service initialized","metadata":{},"service":"ai-project","timestamp":"2026-04-16 18:32:41.560"}
+{"level":"info","message":"数据库连接创建:","metadata":{"threadId":20},"service":"ai-project","timestamp":"2026-04-16 18:32:41.838"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-04-16 18:32:41.840"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-04-16 18:32:45.846"}
+{"level":"info","message":"Cache service initialized","metadata":{},"service":"ai-project","timestamp":"2026-04-16 18:37:36.904"}
+{"level":"info","message":"数据库连接创建:","metadata":{"threadId":21},"service":"ai-project","timestamp":"2026-04-16 18:37:37.163"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-04-16 18:37:37.165"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-04-16 18:37:47.567"}
+{"level":"info","message":"Cache service initialized","metadata":{},"service":"ai-project","timestamp":"2026-04-16 18:38:03.804"}
+{"level":"info","message":"数据库连接创建:","metadata":{"threadId":22},"service":"ai-project","timestamp":"2026-04-16 18:38:04.062"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-04-16 18:38:04.064"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-04-16 18:46:30.912"}
+{"level":"info","message":"数据库连接创建:","metadata":{"threadId":23},"service":"ai-project","timestamp":"2026-04-16 18:46:33.840"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-04-16 18:46:33.844"}
+{"level":"info","message":"数据库连接创建:","metadata":{"threadId":24},"service":"ai-project","timestamp":"2026-04-16 18:49:10.011"}
+{"level":"info","message":"SSE 客户端连接","metadata":{"clientCount":1},"service":"ai-project","timestamp":"2026-04-16 18:49:12.707"}
+{"level":"info","message":"SSE 客户端连接","metadata":{"clientCount":2},"service":"ai-project","timestamp":"2026-04-16 18:49:27.712"}
+{"level":"info","message":"SSE 客户端断开连接","metadata":{"clientCount":1},"service":"ai-project","timestamp":"2026-04-16 18:50:19.066"}
+{"level":"info","message":"SSE 客户端断开连接","metadata":{"clientCount":0},"service":"ai-project","timestamp":"2026-04-16 18:51:01.933"}
+{"level":"info","message":"数据库连接创建:","metadata":{"threadId":25},"service":"ai-project","timestamp":"2026-04-16 18:53:39.474"}
+{"level":"info","message":"数据库连接创建:","metadata":{"threadId":26},"service":"ai-project","timestamp":"2026-04-16 18:54:15.971"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:01:07.891"}
+{"level":"info","message":"数据库连接创建:","metadata":{"threadId":27},"service":"ai-project","timestamp":"2026-04-16 20:03:19.876"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:03:19.880"}
+{"level":"info","message":"SSE 客户端连接","metadata":{"clientCount":1},"service":"ai-project","timestamp":"2026-04-16 20:03:20.502"}
+{"level":"info","message":"数据库连接创建:","metadata":{"threadId":28},"service":"ai-project","timestamp":"2026-04-16 20:03:23.086"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:03:26.389"}
+{"level":"info","message":"热成像传感器数据服务器已成功启动","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:03:26.391"}
+{"level":"info","message":"监听地址: 0.0.0.0:8888","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:03:26.391"}
+{"level":"info","message":"等待客户端连接...","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:03:26.391"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:03:26.392"}
+{"level":"info","message":"心跳机制已启动，间隔: 30000ms, 超时: 90000ms","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:03:26.392"}
+{"level":"info","message":"性能监控已启动，间隔: 60000ms","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:03:26.392"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:04:26.406"}
+{"level":"info","message":"性能监控指标","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:04:26.407"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:04:26.408"}
+{"level":"info","message":"服务器运行时间: 60 秒","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:04:26.408"}
+{"level":"info","message":"总请求数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:04:26.409"}
+{"level":"info","message":"成功请求数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:04:26.409"}
+{"level":"info","message":"失败请求数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:04:26.409"}
+{"level":"info","message":"请求成功率: 0.00%","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:04:26.410"}
+{"level":"info","message":"平均响应时间: 0.00 ms","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:04:26.410"}
+{"level":"info","message":"总接收数据: 0.00 KB","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:04:26.410"}
+{"level":"info","message":"总发送数据: 0.00 KB","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:04:26.410"}
+{"level":"info","message":"当前连接数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:04:26.411"}
+{"level":"info","message":"连接池使用率: 0.00%","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:04:26.411"}
+{"level":"info","message":"连接池峰值: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:04:26.411"}
+{"level":"info","message":"总连接数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:04:26.412"}
+{"level":"info","message":"失败连接数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:04:26.412"}
+{"level":"info","message":"已关闭连接数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:04:26.412"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:04:26.412"}
+{"level":"info","message":"客户端 #1 已连接 - 192.168.1.105:21503","metadata":{"currentConnections":1,"maxConnections":1000},"service":"ai-project","timestamp":"2026-04-16 20:04:58.451"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:05:08.046"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:05:13.046"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:16.257"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:05:18.046"}
+{"level":"info","message":"数据库连接创建:","metadata":{"threadId":39},"service":"ai-project","timestamp":"2026-04-16 20:05:19.940"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:19.944"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:22.316"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:05:23.046"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:26.414"}
+{"level":"info","message":"性能监控指标","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:26.415"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:26.415"}
+{"level":"info","message":"服务器运行时间: 120 秒","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:26.416"}
+{"level":"info","message":"总请求数: 40","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:26.416"}
+{"level":"info","message":"成功请求数: 40","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:26.417"}
+{"level":"info","message":"失败请求数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:26.417"}
+{"level":"info","message":"请求成功率: 100.00%","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:26.417"}
+{"level":"info","message":"平均响应时间: 11.07 ms","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:26.417"}
+{"level":"info","message":"总接收数据: 21.99 KB","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:26.418"}
+{"level":"info","message":"总发送数据: 2.77 KB","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:26.418"}
+{"level":"info","message":"当前连接数: 1","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:26.418"}
+{"level":"info","message":"连接池使用率: 0.10%","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:26.418"}
+{"level":"info","message":"连接池峰值: 1","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:26.418"}
+{"level":"info","message":"总连接数: 1","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:26.419"}
+{"level":"info","message":"失败连接数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:26.419"}
+{"level":"info","message":"已关闭连接数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:26.419"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:26.419"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:05:28.046"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:05:33.046"}
+{"level":"info","message":"数据库连接创建:","metadata":{"threadId":40},"service":"ai-project","timestamp":"2026-04-16 20:05:33.611"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:05:33.615"}
+{"level":"info","message":"SSE 客户端连接","metadata":{"clientCount":1},"service":"ai-project","timestamp":"2026-04-16 20:05:34.063"}
+{"level":"info","message":"数据库连接创建:","metadata":{"threadId":41},"service":"ai-project","timestamp":"2026-04-16 20:05:34.460"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:05:38.045"}
+{"level":"info","message":"SSE 客户端断开连接","metadata":{"clientCount":0},"service":"ai-project","timestamp":"2026-04-16 20:05:38.308"}
+{"level":"info","message":"SSE 客户端连接","metadata":{"clientCount":1},"service":"ai-project","timestamp":"2026-04-16 20:05:38.574"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:05:43.047"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:05:48.044"}
+{"level":"info","message":"SSE 客户端连接","metadata":{"clientCount":2},"service":"ai-project","timestamp":"2026-04-16 20:05:51.465"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:05:53.047"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:05:58.043"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:06:03.044"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:06:08.044"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:06:13.044"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:06:18.043"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:06:23.045"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:06:26.421"}
+{"level":"info","message":"性能监控指标","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:06:26.422"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:06:26.422"}
+{"level":"info","message":"服务器运行时间: 180 秒","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:06:26.423"}
+{"level":"info","message":"总请求数: 160","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:06:26.423"}
+{"level":"info","message":"成功请求数: 160","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:06:26.423"}
+{"level":"info","message":"失败请求数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:06:26.424"}
+{"level":"info","message":"请求成功率: 100.00%","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:06:26.424"}
+{"level":"info","message":"平均响应时间: 7.21 ms","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:06:26.425"}
+{"level":"info","message":"总接收数据: 87.98 KB","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:06:26.425"}
+{"level":"info","message":"总发送数据: 11.09 KB","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:06:26.425"}
+{"level":"info","message":"当前连接数: 1","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:06:26.425"}
+{"level":"info","message":"连接池使用率: 0.10%","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:06:26.426"}
+{"level":"info","message":"连接池峰值: 1","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:06:26.426"}
+{"level":"info","message":"总连接数: 1","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:06:26.426"}
+{"level":"info","message":"失败连接数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:06:26.426"}
+{"level":"info","message":"已关闭连接数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:06:26.426"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:06:26.427"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:06:28.043"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:06:33.044"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:06:38.046"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:06:43.043"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:06:48.043"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:06:53.043"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:06:58.046"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:07:03.042"}
+{"level":"info","message":"SSE 客户端连接","metadata":{"clientCount":3},"service":"ai-project","timestamp":"2026-04-16 20:07:04.169"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:07:08.042"}
+{"level":"info","message":"数据库连接创建:","metadata":{"threadId":42},"service":"ai-project","timestamp":"2026-04-16 20:07:11.420"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:07:13.042"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:07:18.041"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:07:23.042"}
+{"level":"warn","message":"客户端 #1 心跳超时，断开连接","metadata":{"clientInfo":"192.168.1.105:21503","timeSinceLastReceived":119995},"service":"ai-project","timestamp":"2026-04-16 20:07:26.426"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:07:26.427"}
+{"level":"info","message":"性能监控指标","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:07:26.427"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:07:26.427"}
+{"level":"info","message":"服务器运行时间: 240 秒","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:07:26.428"}
+{"level":"info","message":"总请求数: 280","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:07:26.428"}
+{"level":"info","message":"成功请求数: 280","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:07:26.428"}
+{"level":"info","message":"失败请求数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:07:26.428"}
+{"level":"info","message":"请求成功率: 100.00%","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:07:26.429"}
+{"level":"info","message":"平均响应时间: 7.72 ms","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:07:26.429"}
+{"level":"info","message":"总接收数据: 153.96 KB","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:07:26.429"}
+{"level":"info","message":"总发送数据: 19.41 KB","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:07:26.429"}
+{"level":"info","message":"当前连接数: 1","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:07:26.430"}
+{"level":"info","message":"连接池使用率: 0.10%","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:07:26.430"}
+{"level":"info","message":"连接池峰值: 1","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:07:26.430"}
+{"level":"info","message":"总连接数: 1","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:07:26.430"}
+{"level":"info","message":"失败连接数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:07:26.430"}
+{"level":"info","message":"已关闭连接数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:07:26.431"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:07:26.431"}
+{"level":"error","message":"客户端 #1 (192.168.1.105:21503) 连接错误","metadata":{"errorCode":"ERR_STREAM_WRITE_AFTER_END","errorMessage":"write after end"},"service":"ai-project","timestamp":"2026-04-16 20:07:26.474"}
+{"level":"info","message":"当前连接数: 0","metadata":{"clientId":1,"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:07:26.475"}
+{"level":"info","message":"处理客户端 #1 的批量数据，共 6 条","metadata":{"clientInfo":"192.168.1.105:21503"},"service":"ai-project","timestamp":"2026-04-16 20:07:26.476"}
+{"level":"warn","message":"客户端 #1 (192.168.1.105:21503) 连接异常关闭","metadata":{"currentConnections":-1},"service":"ai-project","timestamp":"2026-04-16 20:07:26.480"}
+{"level":"info","message":"客户端 #2 已连接 - 192.168.1.105:27978","metadata":{"currentConnections":1,"maxConnections":1000},"service":"ai-project","timestamp":"2026-04-16 20:07:26.562"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:07:31.043"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:07:36.041"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:07:41.041"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:07:46.040"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:07:51.042"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:07:56.041"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:08:01.046"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:08:06.040"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:08:11.042"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:08:16.040"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:08:21.042"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:08:26.039"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:08:26.439"}
+{"level":"info","message":"性能监控指标","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:08:26.439"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:08:26.440"}
+{"level":"info","message":"服务器运行时间: 300 秒","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:08:26.440"}
+{"level":"info","message":"总请求数: 406","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:08:26.441"}
+{"level":"info","message":"成功请求数: 406","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:08:26.441"}
+{"level":"info","message":"失败请求数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:08:26.441"}
+{"level":"info","message":"请求成功率: 100.00%","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:08:26.441"}
+{"level":"info","message":"平均响应时间: 7.50 ms","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:08:26.441"}
+{"level":"info","message":"总接收数据: 223.23 KB","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:08:26.441"}
+{"level":"info","message":"总发送数据: 28.02 KB","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:08:26.441"}
+{"level":"info","message":"当前连接数: 1","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:08:26.441"}
+{"level":"info","message":"连接池使用率: 0.10%","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:08:26.441"}
+{"level":"info","message":"连接池峰值: 1","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:08:26.442"}
+{"level":"info","message":"总连接数: 2","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:08:26.442"}
+{"level":"info","message":"失败连接数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:08:26.442"}
+{"level":"info","message":"已关闭连接数: 1","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:08:26.442"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:08:26.442"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:08:31.042"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:08:36.101"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:08:41.100"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:08:46.124"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:08:51.184"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:08:56.233"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:09:01.310"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:09:06.362"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:09:11.401"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:09:16.450"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:09:21.492"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:09:26.444"}
+{"level":"info","message":"性能监控指标","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:09:26.444"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:09:26.445"}
+{"level":"info","message":"服务器运行时间: 360 秒","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:09:26.445"}
+{"level":"info","message":"总请求数: 516","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:09:26.445"}
+{"level":"info","message":"成功请求数: 516","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:09:26.445"}
+{"level":"info","message":"失败请求数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:09:26.445"}
+{"level":"info","message":"请求成功率: 100.00%","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:09:26.445"}
+{"level":"info","message":"平均响应时间: 6.78 ms","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:09:26.446"}
+{"level":"info","message":"总接收数据: 283.62 KB","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:09:26.446"}
+{"level":"info","message":"总发送数据: 35.65 KB","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:09:26.446"}
+{"level":"info","message":"当前连接数: 1","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:09:26.446"}
+{"level":"info","message":"连接池使用率: 0.10%","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:09:26.446"}
+{"level":"info","message":"连接池峰值: 1","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:09:26.446"}
+{"level":"info","message":"总连接数: 2","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:09:26.446"}
+{"level":"info","message":"失败连接数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:09:26.447"}
+{"level":"info","message":"已关闭连接数: 1","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:09:26.447"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:09:26.447"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:09:26.530"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:09:31.576"}
+{"level":"info","message":"SSE 客户端连接","metadata":{"clientCount":4},"service":"ai-project","timestamp":"2026-04-16 20:09:32.287"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:09:36.610"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:09:41.639"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:09:46.717"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:09:51.767"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:09:56.825"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:10:01.862"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:10:06.900"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:10:11.926"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:10:16.973"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 10 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:10:22.019"}
+{"level":"warn","message":"客户端 #2 心跳超时，断开连接","metadata":{"clientInfo":"192.168.1.105:27978","timeSinceLastReceived":149978},"service":"ai-project","timestamp":"2026-04-16 20:10:26.453"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:10:26.454"}
+{"level":"info","message":"性能监控指标","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:10:26.454"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:10:26.454"}
+{"level":"info","message":"服务器运行时间: 420 秒","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:10:26.454"}
+{"level":"info","message":"总请求数: 636","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:10:26.455"}
+{"level":"info","message":"成功请求数: 636","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:10:26.455"}
+{"level":"info","message":"失败请求数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:10:26.455"}
+{"level":"info","message":"请求成功率: 100.00%","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:10:26.455"}
+{"level":"info","message":"平均响应时间: 6.29 ms","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:10:26.455"}
+{"level":"info","message":"总接收数据: 349.45 KB","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:10:26.455"}
+{"level":"info","message":"总发送数据: 43.97 KB","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:10:26.455"}
+{"level":"info","message":"当前连接数: 1","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:10:26.455"}
+{"level":"info","message":"连接池使用率: 0.10%","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:10:26.456"}
+{"level":"info","message":"连接池峰值: 1","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:10:26.456"}
+{"level":"info","message":"总连接数: 2","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:10:26.456"}
+{"level":"info","message":"失败连接数: 0","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:10:26.456"}
+{"level":"info","message":"已关闭连接数: 1","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:10:26.456"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-04-16 20:10:26.456"}
+{"level":"error","message":"客户端 #2 (192.168.1.105:27978) 连接错误","metadata":{"errorCode":"ERR_STREAM_WRITE_AFTER_END","errorMessage":"write after end"},"service":"ai-project","timestamp":"2026-04-16 20:10:26.516"}
+{"level":"info","message":"当前连接数: 0","metadata":{"clientId":2,"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:10:26.517"}
+{"level":"info","message":"处理客户端 #2 的批量数据，共 5 条","metadata":{"clientInfo":"192.168.1.105:27978"},"service":"ai-project","timestamp":"2026-04-16 20:10:26.517"}
+{"level":"warn","message":"客户端 #2 (192.168.1.105:27978) 连接异常关闭","metadata":{"currentConnections":-1},"service":"ai-project","timestamp":"2026-04-16 20:10:26.520"}
+{"level":"info","message":"收到退出信号，正在关闭服务器...","metadata":{"activeConnections":0,"totalConnections":2},"service":"ai-project","timestamp":"2026-04-16 20:10:34.613"}

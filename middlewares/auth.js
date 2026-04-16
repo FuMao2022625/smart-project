@@ -1,51 +1,33 @@
+// 移除所有认证和授权限制
 const jwt = require('jsonwebtoken');
-const winston = require('../config/logger');
 
+// 直接通过所有认证请求
 const authenticateToken = (req, res, next) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-
-  if (!token) {
-    return res.status(401).json({ 
-      success: false,
-      error: 'Access token required' 
-    });
-  }
-
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) {
-      winston.warn('Invalid token attempt:', err.message);
-      return res.status(403).json({ 
-        success: false,
-        error: 'Invalid or expired token' 
-      });
-    }
-
-    req.user = user;
-    next();
-  });
+  // 模拟用户信息，确保后续流程正常
+  req.user = {
+    id: '1',
+    email: 'admin@example.com',
+    role: 'admin'
+  };
+  next();
 };
 
+// 直接通过所有授权请求
 const authorize = (roles = []) => {
   return (req, res, next) => {
+    // 模拟用户信息，确保后续流程正常
     if (!req.user) {
-      return res.status(401).json({ 
-        success: false,
-        error: 'Authentication required' 
-      });
+      req.user = {
+        id: '1',
+        email: 'admin@example.com',
+        role: 'admin'
+      };
     }
-
-    if (roles.length && !roles.includes(req.user.role)) {
-      return res.status(403).json({ 
-        success: false,
-        error: 'Insufficient permissions' 
-      });
-    }
-
     next();
   };
 };
 
+// 保留令牌生成功能
 const generateToken = (user) => {
   return jwt.sign(
     { 
@@ -53,7 +35,7 @@ const generateToken = (user) => {
       email: user.email, 
       role: user.role || 'user' 
     },
-    process.env.JWT_SECRET,
+    process.env.JWT_SECRET || 'default_secret',
     { expiresIn: process.env.JWT_EXPIRES_IN || '24h' }
   );
 };
