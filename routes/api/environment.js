@@ -58,19 +58,98 @@ router.get('/data', cacheMiddleware(60), async (req, res) => {
   }
 });
 // 获取温度历史数据
+// router.get('/temperature-history', cacheMiddleware(300), async (req, res) => {
+//   try {
+//     // 1. 获取 服务器操作系统当前时间
+//     const now = new Date();
+//
+//     // 2. 生成最近 10 个 10分钟时间段（基于服务器当前时间往前推）
+//     const timeData = [];
+//     for (let i = 9; i >= 0; i--) {
+//       // 每往前推 10 分钟
+//       const time = new Date(now - i * 10 * 60 * 1000);
+//
+//       // 按 10 分钟取整（0、10、20...50 分）
+//       const minutes = Math.floor(time.getMinutes() / 10) * 10;
+//       time.setMinutes(minutes);
+//       time.setSeconds(0);
+//       time.setMilliseconds(0);
+//
+//       // 格式化时间标签 HH:MM:SS
+//       const label = `${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')}:00`;
+//
+//       timeData.push({
+//         timestamp: time,
+//         label: label
+//       });
+//     }
+//
+//     // 3. 从数据库查询所有温度（不再按时间分组，交给后端按服务器时间分组）
+//     const [rows] = await db.query(
+//       `SELECT device_id, temperature, record_time
+//        FROM sensor_data
+//        WHERE temperature IS NOT NULL
+//        ORDER BY record_time DESC`
+//     );
+//
+//     // 4. 按服务器生成的 10 个时间段，计算每个时间段的平均温度
+//     const labels = [];
+//     const temperatures = [];
+//
+//     timeData.forEach(slot => {
+//       const slotStartTime = slot.timestamp.getTime();
+//       const slotEndTime = slotStartTime + 10 * 60 * 1000;
+//
+//       // 筛选出这个时间段内的温度
+//       const slotTemperatures = rows
+//         .filter(row => {
+//           const rowTime = new Date(row.record_time).getTime();
+//           return rowTime >= slotStartTime && rowTime < slotEndTime;
+//         })
+//         .map(row => parseFloat(row.temperature));
+//
+//       // 计算平均值，没有数据则为 0
+//       const avgTemp = slotTemperatures.length
+//         ? parseFloat((slotTemperatures.reduce((a, b) => a + b, 0) / slotTemperatures.length).toFixed(2))
+//         : 0;
+//
+//       labels.push(slot.label);
+//       temperatures.push(avgTemp);
+//     });
+//
+//     // 5. 返回给前端
+//     res.json({
+//       code: 200,
+//       message: 'success',
+//       data: {
+//         labels,
+//         temperatures
+//       }
+//     });
+//   } catch (error) {
+//     winston.error('获取温度历史数据失败:', error);
+//     res.status(500).json({
+//       code: 500,
+//       message: '服务器内部错误',
+//       data: null,
+//       timestamp: new Date().toISOString()
+//     });
+//   }
+//
+// });
 router.get('/temperature-history', cacheMiddleware(300), async (req, res) => {
   try {
-    // 1. 获取 服务器操作系统当前时间
+    // 1. 获取服务器操作系统当前时间
     const now = new Date();
 
-    // 2. 生成最近 10 个 10分钟时间段（基于服务器当前时间往前推）
+    // 2. 生成最近 10 个 2分钟时间段（基于服务器当前时间往前推）
     const timeData = [];
     for (let i = 9; i >= 0; i--) {
-      // 每往前推 10 分钟
-      const time = new Date(now - i * 10 * 60 * 1000);
+      // 每往前推 2 分钟
+      const time = new Date(now - i * 2 * 60 * 1000);
 
-      // 按 10 分钟取整（0、10、20...50 分）
-      const minutes = Math.floor(time.getMinutes() / 10) * 10;
+      // 按 2 分钟取整（0、2、4、6...58 分）
+      const minutes = Math.floor(time.getMinutes() / 2) * 2;
       time.setMinutes(minutes);
       time.setSeconds(0);
       time.setMilliseconds(0);
@@ -84,34 +163,35 @@ router.get('/temperature-history', cacheMiddleware(300), async (req, res) => {
       });
     }
 
-    // 3. 从数据库查询所有温度（不再按时间分组，交给后端按服务器时间分组）
+    // 3. 从数据库查询所有温度
     const [rows] = await db.query(
-      `SELECT device_id, temperature, record_time
+        `SELECT device_id, temperature, record_time
        FROM sensor_data
        WHERE temperature IS NOT NULL
        ORDER BY record_time DESC`
     );
 
-    // 4. 按服务器生成的 10 个时间段，计算每个时间段的平均温度
+    // 4. 按服务器生成的 10 个 2分钟时间段，计算每个时间段的平均温度
     const labels = [];
     const temperatures = [];
 
     timeData.forEach(slot => {
       const slotStartTime = slot.timestamp.getTime();
-      const slotEndTime = slotStartTime + 10 * 60 * 1000;
+      // 每个时间段 2 分钟
+      const slotEndTime = slotStartTime + 120000;
 
       // 筛选出这个时间段内的温度
       const slotTemperatures = rows
-        .filter(row => {
-          const rowTime = new Date(row.record_time).getTime();
-          return rowTime >= slotStartTime && rowTime < slotEndTime;
-        })
-        .map(row => parseFloat(row.temperature));
+          .filter(row => {
+            const rowTime = new Date(row.record_time).getTime();
+            return rowTime >= slotStartTime && rowTime < slotEndTime;
+          })
+          .map(row => parseFloat(row.temperature));
 
       // 计算平均值，没有数据则为 0
       const avgTemp = slotTemperatures.length
-        ? parseFloat((slotTemperatures.reduce((a, b) => a + b, 0) / slotTemperatures.length).toFixed(2))
-        : 0;
+          ? parseFloat((slotTemperatures.reduce((a, b) => a + b, 0) / slotTemperatures.length).toFixed(2))
+          : 0;
 
       labels.push(slot.label);
       temperatures.push(avgTemp);
@@ -135,7 +215,6 @@ router.get('/temperature-history', cacheMiddleware(300), async (req, res) => {
       timestamp: new Date().toISOString()
     });
   }
-
 });
 // 获取环境数据列表
 router.get('/data-list', async (req, res) => {

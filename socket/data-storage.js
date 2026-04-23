@@ -123,7 +123,7 @@ async function saveToDatabase(parsedData, processingId) {
         parsedData.battery
       ];
       await dbPool.execute(query, values);
-      await dataProcessor.log('INFO', `数据已保存到数据库 [ID: ${processingId}]`);
+      //await dataProcessor.log('INFO', `数据已保存到数据库 [ID: ${processingId}]`);
       return;
     } catch (error) {
       retryCount++;

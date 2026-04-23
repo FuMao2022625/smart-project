@@ -156,7 +156,6 @@ router.get('/latest-data', async (req, res) => {
     });
   }
 });
-//获取传感器历史数据路由
 router.get('/history', async (req, res) => {
   try {
     const limit = Math.min(parseInt(req.query.limit) || 100, 1000);

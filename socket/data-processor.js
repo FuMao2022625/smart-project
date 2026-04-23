@@ -10,7 +10,8 @@ const VALID_ENV_STATUSES = ['NORMAL', 'WARNING', 'ALERT', 'EMERGENCY'];
 let dbPool = null;
 let dataBuffer = [];
 const BATCH_SIZE = 100;
- const DB_POOL_CONFIG = {
+
+const DB_POOL_CONFIG = {
   host: 'localhost',
   user: 'root',
   password: '12305',
@@ -22,7 +23,6 @@ const BATCH_SIZE = 100;
   connectTimeout: 10000,
   acquireTimeout: 10000
 };
-// 事件发射器
 const eventEmitter = require('events');
 // 数据事件发射器
 const dataEmitter = new eventEmitter();

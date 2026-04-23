@@ -1,37 +1,56 @@
+/**
+ * API路由入口文件
+ * 采用插件式架构，自动注册路由模块
+ */
 const express = require('express');
 const router = express.Router();
 const { apiErrorHandler } = require('../../middlewares/apiHandler');
 const { cacheMiddleware } = require('../../middlewares/cache');
-const authRouter = require('./auth');
-const robotRouter = require('./robot');
-const sseRouter = require('./sse');
-const environmentRouter = require('./environment');
-const alertsRouter = require('./alerts');
-const devicesRouter = require('./devices');
-const sensorsRouter = require('./sensors');
-const messagesRouter = require('./messages');
-const usersRouter = require('./users');
-const systemRouter = require('./system');
-const reportsRouter = require('./reports');
-const qwenRouter = require('./qwen');
-const aiRouter = require('./ai');
+const fs = require('fs');
+const path = require('path');
 
-// SSE 路由不需要缓存
-router.use('/sse', sseRouter);
+// 路由配置
+const routeConfig = [
+  // 不需要缓存的路由
+  { name: 'sse', path: '/sse', cache: false },
+  // 需要缓存的路由
+  { name: 'auth', path: '/auth', cache: true },
+  { name: 'robot', path: '/robot', cache: true },
+  { name: 'environment', path: '/environment', cache: true },
+  { name: 'alerts', path: '/alerts', cache: true },
+  { name: 'devices', path: '/devices', cache: true },
+  { name: 'sensors', path: '/sensors', cache: true },
+  { name: 'messages', path: '/messages', cache: true },
+  { name: 'users', path: '/users', cache: true },
+  { name: 'system', path: '/system', cache: true },
+  { name: 'reports', path: '/reports', cache: true }
+];
 
-// 其他路由应用缓存中间件，缓存时间为10分钟
-router.use(cacheMiddleware(600));
-router.use('/auth', authRouter);
-router.use('/robot', robotRouter);
-router.use('/environment', environmentRouter);
-router.use('/alerts', alertsRouter);
-router.use('/devices', devicesRouter);
-router.use('/sensors', sensorsRouter);
-router.use('/messages', messagesRouter);
-router.use('/users', usersRouter);
-router.use('/system', systemRouter);
-router.use('/reports', reportsRouter);
-router.use('/qwen', qwenRouter);
-router.use('/ai', aiRouter);
+// 自动注册路由
+const registerRoutes = () => {
+  routeConfig.forEach(config => {
+    try {
+      // 尝试加载路由模块
+      const routeModule = require(`./${config.name}`);
+      
+      // 根据配置应用缓存中间件
+      if (config.cache) {
+        router.use(config.path, cacheMiddleware(600), routeModule);
+      } else {
+        router.use(config.path, routeModule);
+      }
+      
+      console.log(`✓ 注册路由: ${config.path}`);
+    } catch (error) {
+      console.error(`✗ 注册路由失败: ${config.path}`, error.message);
+    }
+  });
+};
+
+// 注册路由
+registerRoutes();
+
+// 全局错误处理中间件
 router.use(apiErrorHandler);
+
 module.exports = router;
