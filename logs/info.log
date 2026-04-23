@@ -3102,3 +3102,10 @@
 {"level":"info","message":"数据库连接创建:","metadata":{"threadId":11},"service":"ai-project","timestamp":"2026-04-23 18:25:18.291"}
 {"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-04-23 18:25:18.298"}
 {"level":"warn","message":"内存使用较高:","metadata":{"percentage":84,"total":25,"used":21.05},"service":"ai-project","timestamp":"2026-04-23 18:25:52.788"}
+{"level":"info","message":"数据库连接创建:","metadata":{"threadId":8},"service":"ai-project","timestamp":"2026-04-23 21:12:55.487"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-04-23 21:12:55.493"}
+{"level":"warn","message":"内存使用较高:","metadata":{"percentage":88,"total":24.75,"used":21.66},"service":"ai-project","timestamp":"2026-04-23 21:13:19.077"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-04-23 21:21:02.779"}
+{"level":"info","message":"数据库连接创建:","metadata":{"threadId":9},"service":"ai-project","timestamp":"2026-04-23 21:21:12.843"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-04-23 21:21:12.849"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-04-23 21:21:59.982"}

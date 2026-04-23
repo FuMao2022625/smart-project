@@ -1208,3 +1208,4 @@
 {"level":"error","message":"客户端 #3 (192.168.0.135:63546) 连接错误","metadata":{"errorCode":"ECONNRESET","errorMessage":"read ECONNRESET"},"service":"ai-project","timestamp":"2026-04-21 11:47:26.300"}
 {"level":"warn","message":"客户端 #3 (192.168.0.135:63546) 连接异常关闭","metadata":{"currentConnections":-1},"service":"ai-project","timestamp":"2026-04-21 11:47:26.303"}
 {"level":"warn","message":"内存使用较高:","metadata":{"percentage":84,"total":25,"used":21.05},"service":"ai-project","timestamp":"2026-04-23 18:25:52.788"}
+{"level":"warn","message":"内存使用较高:","metadata":{"percentage":88,"total":24.75,"used":21.66},"service":"ai-project","timestamp":"2026-04-23 21:13:19.077"}
