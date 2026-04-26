@@ -1,298 +1,209 @@
+/**
+ * 用户管理路由
+ * 提供用户列表、创建、更新、删除等功能
+ */
 const express = require('express');
 const router = express.Router();
 const db = require('../../config/db');
-const bcrypt = require('bcrypt');
-router.get('/', async (req, res) => {
-  try {
-    console.log('获取用户列表请求:', req.query);
-    const { page = 1, pageSize = 10, role, status, keyword } = req.query;
-    let whereClause = 'WHERE 1=1';
-    const params = [];
-    if (role) {
-      whereClause += ' AND role_id = ?';
-      params.push(role);
-    }
-    if (status) {
-      whereClause += ' AND status = ?';
-      params.push(status);
-    }
-    if (keyword) {
-      whereClause += ' AND (username LIKE ? OR email LIKE ?)';
-      params.push(`%${keyword}%`, `%${keyword}%`);
-    }
-    const offset = (page - 1) * pageSize;
-    console.log('SQL查询:', `SELECT id as userId, username, email, role_id as role, status, last_login_time as lastLogin, create_time as createdAt FROM users ${whereClause} ORDER BY create_time DESC LIMIT ? OFFSET ?`);
-    console.log('SQL参数:', [...params, parseInt(pageSize), offset]);
-    const [rows] = await db.query(
-      `SELECT id as userId, username, email, role_id as role, status, last_login_time as lastLogin, create_time as createdAt 
-       FROM users 
-       ${whereClause} 
-       ORDER BY create_time DESC 
-       LIMIT ? OFFSET ?`,
-      [...params, parseInt(pageSize), offset]
-    );
-    console.log('查询结果:', rows);
-    const [countRows] = await db.query(
-      `SELECT COUNT(*) as total FROM users ${whereClause}`,
-      params
-    );
-    console.log('计数结果:', countRows);
-    const total = countRows[0].total;
-    res.json({
-      code: 200,
-      message: 'success',
-      data: {
-        total,
-        page: parseInt(page),
-        pageSize: parseInt(pageSize),
-        items: rows.map(row => ({
-          userId: row.userId.toString(),
-          username: row.username,
-          email: row.email,
-          role: row.role.toString(),
-          status: row.status,
-          lastLogin: row.lastLogin ? new Date(row.lastLogin).toISOString() : null,
-          createdAt: new Date(row.createdAt).toISOString()
-        }))
-      }
-    });
-  } catch (error) {
-    console.error('获取用户列表失败:', error);
-    res.status(500).json({
-      code: 500,
-      message: '服务器内部错误',
-      data: null,
-      timestamp: new Date().toISOString(),
-      error: error.message
-    });
-  }
-});
-router.post('/', async (req, res) => {
-  try {
-    const { username, email, password, phone, role, status } = req.body;
-    if (!username || !email || !password || !phone || !role || !status) {
-      return res.status(400).json({
-        code: 400,
-        message: '请求参数错误',
-        data: null,
-        timestamp: new Date().toISOString()
-      });
-    }
-    const [existingUsers] = await db.query('SELECT * FROM users WHERE username = ?', [username]);
-    if (existingUsers.length > 0) {
-      return res.status(400).json({
-        code: 400,
-        message: '用户名已存在',
-        data: null,
-        timestamp: new Date().toISOString()
-      });
-    }
-    const [existingEmails] = await db.query('SELECT * FROM users WHERE email = ?', [email]);
-    if (existingEmails.length > 0) {
-      return res.status(400).json({
-        code: 400,
-        message: '邮箱已被注册',
-        data: null,
-        timestamp: new Date().toISOString()
-      });
-    }  
-    const uniquePhone = '13800138' + Math.floor(1000 + Math.random() * 9000);
-    const hashedPassword = await bcrypt.hash(password, 10);
+const bcrypt = require('bcryptjs');
+const { success, paginated, badRequest, notFound, error, asyncHandler } = require('../../utils/responseFormatter');
+const { authenticateToken, authorize } = require('../../middlewares/auth');
+const { validateRequest, validateQuery, userSchema, paginationSchema } = require('../../middlewares/validator');
+const winston = require('../../config/logger');
 
-    // 获取或创建默认角色
-    let roleId = 1;
-    try {
-      // 先尝试获取任意角色
-      const [anyRole] = await db.query('SELECT id FROM roles LIMIT 1');
-      if (anyRole.length > 0) {
-        roleId = anyRole[0].id;
-      } else {
-        // 尝试创建默认角色，使用常见字段名
-        try {
-          const [newRole] = await db.query(
-            'INSERT INTO roles (name, description) VALUES (?, ?)',
-            ['user', '普通用户']
-          );
-          roleId = newRole.insertId;
-        } catch (e1) {
-          try {
-            const [newRole] = await db.query(
-              'INSERT INTO roles (role_name, desc) VALUES (?, ?)',
-              ['user', '普通用户']
-            );
-            roleId = newRole.insertId;
-          } catch (e2) {
-            roleId = 1;
-          }
-        }
-      }
-    } catch (roleError) {
-      console.error('获取/创建角色失败:', roleError);
-      roleId = 1;
-    }
+const formatDateToISO = (date) => {
+  if (!date) return null;
+  if (typeof date === 'string') return date;
+  if (date instanceof Date) return date.toISOString();
+  return new Date(date).toISOString();
+};
 
-    // 尝试禁用外键检查插入用户
-    try {
-      await db.query('SET FOREIGN_KEY_CHECKS = 0');
-    } catch (e) {
-      // 忽略错误
-    }
+router.get('/', authenticateToken, authorize(['admin']), validateQuery(paginationSchema), asyncHandler(async (req, res) => {
+  const { page, pageSize, role, status, keyword } = req.query;
 
-    const [result] = await db.query(
-      'INSERT INTO users (username, email, password_hash, phone, role_id, status) VALUES (?, ?, ?, ?, ?, ?)',
-      [username, email, hashedPassword, uniquePhone, roleId, status === 'online' ? 'active' : (status === 'offline' ? 'inactive' : status)]
-    );
+  let whereClause = 'WHERE 1=1';
+  const params = [];
 
-    // 恢复外键检查
-    try {
-      await db.query('SET FOREIGN_KEY_CHECKS = 1');
-    } catch (e) {
-      // 忽略错误
-    }
-    res.json({
-      code: 200,
-      message: '用户添加成功',
-      data: {
-        userId: result.insertId.toString(),
-        username
-      }
-    });
-  } catch (error) {
-    console.error('添加用户失败:', error);
-    res.status(500).json({
-      code: 500,
-      message: '服务器内部错误',
-      data: null,
-      timestamp: new Date().toISOString()
-    });
+  if (role) {
+    whereClause += ' AND role_id = ?';
+    params.push(role);
   }
-});
-router.put('/:userId', async (req, res) => {
+  if (status) {
+    whereClause += ' AND status = ?';
+    params.push(status);
+  }
+  if (keyword) {
+    whereClause += ' AND (username LIKE ? OR email LIKE ?)';
+    params.push(`%${keyword}%`, `%${keyword}%`);
+  }
+
+  const offset = (page - 1) * pageSize;
+
+  const [rows] = await db.query(
+    `SELECT id as userId, username, email, role_id as role, status, last_login_time as lastLogin, create_time as createdAt
+     FROM users
+     ${whereClause}
+     ORDER BY create_time DESC
+     LIMIT ? OFFSET ?`,
+    [...params, parseInt(pageSize), offset]
+  );
+
+  const [countResult] = await db.query(
+    `SELECT COUNT(*) as total FROM users ${whereClause}`,
+    params
+  );
+
+  const total = countResult[0].total;
+
+  winston.info('获取用户列表:', { adminId: req.user.id, total, page, pageSize });
+
+  return paginated(res, {
+    items: rows.map(row => ({
+      userId: row.userId.toString(),
+      username: row.username,
+      email: row.email,
+      role: row.role.toString(),
+      status: row.status,
+      lastLogin: formatDateToISO(row.lastLogin),
+      createdAt: formatDateToISO(row.createdAt)
+    })),
+    total,
+    page: parseInt(page),
+    pageSize: parseInt(pageSize)
+  });
+}));
+
+router.post('/', authenticateToken, authorize(['admin']), validateRequest(userSchema), asyncHandler(async (req, res) => {
+  const { username, email, password, phone, role, status } = req.body;
+
+  const [existingUsers] = await db.query('SELECT * FROM users WHERE username = ?', [username]);
+  if (existingUsers.length > 0) {
+    return badRequest(res, '用户名已存在');
+  }
+
+  const [existingEmails] = await db.query('SELECT * FROM users WHERE email = ?', [email]);
+  if (existingEmails.length > 0) {
+    return badRequest(res, '邮箱已被注册');
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  let roleId = 1;
   try {
-    const { userId } = req.params;
-    const { username, email, phone, role, status } = req.body;
-    if (!username || !email || !phone || !role || !status) {
-      return res.status(400).json({
-        code: 400,
-        message: '请求参数错误',
-        data: null,
-        timestamp: new Date().toISOString()
-      });
+    const [anyRole] = await db.query('SELECT id FROM roles LIMIT 1');
+    if (anyRole.length > 0) {
+      roleId = anyRole[0].id;
     }
-    const [existingUsers] = await db.query('SELECT * FROM users WHERE id = ?', [userId]);
-    if (existingUsers.length === 0) {
-      return res.status(404).json({
-        code: 404,
-        message: '用户不存在',
-        data: null,
-        timestamp: new Date().toISOString()
-      });
-    }
-    const [existingUsernames] = await db.query('SELECT * FROM users WHERE username = ? AND id != ?', [username, userId]);
-    if (existingUsernames.length > 0) {
-      return res.status(400).json({
-        code: 400,
-        message: '用户名已存在',
-        data: null,
-        timestamp: new Date().toISOString()
-      });
-    }
-    const [existingEmails] = await db.query('SELECT * FROM users WHERE email = ? AND id != ?', [email, userId]);
-    if (existingEmails.length > 0) {
-      return res.status(400).json({
-        code: 400,
-        message: '邮箱已被注册',
-        data: null,
-        timestamp: new Date().toISOString()
-      });
-    }
-    const uniquePhone = '13900139' + Math.floor(1000 + Math.random() * 9000);
-    const [result] = await db.query(
-      'UPDATE users SET username = ?, email = ?, phone = ?, role_id = ?, status = ? WHERE id = ?',
-      [username, email, uniquePhone, 1, status, userId]
-    );
-    res.json({
-      code: 200,
-      message: '用户信息更新成功',
-      data: {
-        userId,
-        username
-      }
-    });
-  } catch (error) {
-    console.error('更新用户信息失败:', error);
-    res.status(500).json({
-      code: 500,
-      message: '服务器内部错误',
-      data: null,
-      timestamp: new Date().toISOString()
-    });
+  } catch (roleError) {
+    winston.warn('获取角色失败，使用默认值:', roleError.message);
+    roleId = 1;
   }
-});
-router.delete('/:userId', async (req, res) => {
-  try {
-    const { userId } = req.params;
-    const [existingUsers] = await db.query('SELECT * FROM users WHERE id = ?', [userId]);
-    if (existingUsers.length === 0) {
-      return res.status(404).json({
-        code: 404,
-        message: '用户不存在',
-        data: null,
-        timestamp: new Date().toISOString()
-      });
-    }
-    await db.query('DELETE FROM users WHERE id = ?', [userId]);
-    res.json({
-      code: 200,
-      message: '用户删除成功',
-      data: null
-    });
-  } catch (error) {
-    console.error('删除用户失败:', error);
-    res.status(500).json({
-      code: 500,
-      message: '服务器内部错误',
-      data: null,
-      timestamp: new Date().toISOString()
-    });
+
+  const [result] = await db.query(
+    'INSERT INTO users (username, email, password_hash, phone, role_id, status) VALUES (?, ?, ?, ?, ?, ?)',
+    [username, email, hashedPassword, phone, roleId, status === 'online' ? 'active' : (status === 'offline' ? 'inactive' : status)]
+  );
+
+  winston.info('创建用户:', { adminId: req.user.id, newUserId: result.insertId, username });
+
+  return success(res, {
+    userId: result.insertId.toString(),
+    username
+  }, '用户添加成功');
+}));
+
+router.put('/:userId', authenticateToken, authorize(['admin']), asyncHandler(async (req, res) => {
+  const { userId } = req.params;
+  const { username, email, phone, role, status } = req.body;
+
+  if (!username || !email || !phone) {
+    return badRequest(res, '请求参数错误');
   }
-});
-router.post('/:userId/reset-password', async (req, res) => {
-  try {
-    const { userId } = req.params;
-    const { newPassword } = req.body;
-    if (!newPassword) {
-      return res.status(400).json({
-        code: 400,
-        message: '请求参数错误',
-        data: null,
-        timestamp: new Date().toISOString()
-      });
-    }
-    const [existingUsers] = await db.query('SELECT * FROM users WHERE id = ?', [userId]);
-    if (existingUsers.length === 0) {
-      return res.status(404).json({
-        code: 404,
-        message: '用户不存在',
-        data: null,
-        timestamp: new Date().toISOString()
-      });
-    }
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
-    await db.query('UPDATE users SET password_hash = ? WHERE id = ?', [hashedPassword, userId]);
-    res.json({
-      code: 200,
-      message: '密码重置成功',
-      data: null
-    });
-  } catch (error) {
-    console.error('重置用户密码失败:', error);
-    res.status(500).json({
-      code: 500,
-      message: '服务器内部错误',
-      data: null,
-      timestamp: new Date().toISOString()
-    });
+
+  const [existingUsers] = await db.query('SELECT * FROM users WHERE id = ?', [userId]);
+  if (existingUsers.length === 0) {
+    return notFound(res, '用户不存在');
   }
-});
+
+  const [existingUsernames] = await db.query('SELECT * FROM users WHERE username = ? AND id != ?', [username, userId]);
+  if (existingUsernames.length > 0) {
+    return badRequest(res, '用户名已存在');
+  }
+
+  const [existingEmails] = await db.query('SELECT * FROM users WHERE email = ? AND id != ?', [email, userId]);
+  if (existingEmails.length > 0) {
+    return badRequest(res, '邮箱已被注册');
+  }
+
+  await db.query(
+    'UPDATE users SET username = ?, email = ?, phone = ?, role_id = ?, status = ? WHERE id = ?',
+    [username, email, phone, role || 1, status, userId]
+  );
+
+  winston.info('更新用户:', { adminId: req.user.id, userId, username });
+
+  return success(res, { userId, username }, '用户信息更新成功');
+}));
+
+router.delete('/:userId', authenticateToken, authorize(['admin']), asyncHandler(async (req, res) => {
+  const { userId } = req.params;
+
+  const [existingUsers] = await db.query('SELECT * FROM users WHERE id = ?', [userId]);
+  if (existingUsers.length === 0) {
+    return notFound(res, '用户不存在');
+  }
+
+  await db.query('DELETE FROM users WHERE id = ?', [userId]);
+
+  winston.info('删除用户:', { adminId: req.user.id, userId });
+
+  return success(res, null, '用户删除成功');
+}));
+
+router.post('/:userId/reset-password', authenticateToken, authorize(['admin']), asyncHandler(async (req, res) => {
+  const { userId } = req.params;
+  const { newPassword } = req.body;
+
+  if (!newPassword) {
+    return badRequest(res, '请提供新密码');
+  }
+
+  const [existingUsers] = await db.query('SELECT * FROM users WHERE id = ?', [userId]);
+  if (existingUsers.length === 0) {
+    return notFound(res, '用户不存在');
+  }
+
+  const hashedPassword = await bcrypt.hash(newPassword, 10);
+  await db.query('UPDATE users SET password_hash = ? WHERE id = ?', [hashedPassword, userId]);
+
+  winston.info('重置用户密码:', { adminId: req.user.id, userId });
+
+  return success(res, null, '密码重置成功');
+}));
+
+router.get('/:userId', authenticateToken, authorize(['admin']), asyncHandler(async (req, res) => {
+  const { userId } = req.params;
+
+  const [users] = await db.query(
+    'SELECT id as userId, username, email, role_id as role, status, last_login_time as lastLogin, create_time as createdAt FROM users WHERE id = ?',
+    [userId]
+  );
+
+  if (users.length === 0) {
+    return notFound(res, '用户不存在');
+  }
+
+  const user = users[0];
+
+  return success(res, {
+    userId: user.userId.toString(),
+    username: user.username,
+    email: user.email,
+    role: user.role.toString(),
+    status: user.status,
+    lastLogin: formatDateToISO(user.lastLogin),
+    createdAt: formatDateToISO(user.createdAt)
+  });
+}));
+
 module.exports = router;

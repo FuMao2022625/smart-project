@@ -15,7 +15,13 @@ require('dotenv').config();
 // 导入配置和中间件
 const db = require('./config/db');
 const cors = require('./config/cors');
-const securityMiddleware = require('./middlewares/security');
+const {
+  securityMiddleware,
+  sqlInjectionProtection,
+  requestSizeLimit,
+  sanitizeInput,
+  inputValidation
+} = require('./middlewares/security');
 const { monitoringMiddleware } = require('./middlewares/monitoring');
 const winston = require('./config/logger');
 
@@ -52,21 +58,68 @@ app.use(cors);
 // 应用日志中间件
 app.use(logger('dev'));
 
+// 应用SQL注入防护
+app.use(sqlInjectionProtection);
+
+// 应用请求体大小限制
+app.use(requestSizeLimit('10mb'));
+
 // 解析JSON请求体
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 
 // 解析URL编码的请求体
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false, limit: '10mb' }));
 
 // 解析Cookie
 app.use(cookieParser());
 
-// 启用压缩中间件，减少响应大小
-app.use(compression());
+// 应用输入清理
+app.use(sanitizeInput);
 
-// 静态资源服务，设置缓存时间为1天
+// 应用输入验证
+app.use(inputValidation);
+
+// 启用压缩中间件，减少响应大小
+const compressFilter = (req, res) => {
+  if (req.headers['x-no-compression']) {
+    return false;
+  }
+  const contentType = res.get('Content-Type');
+  if (contentType && contentType.includes('image')) {
+    return false;
+  }
+  return compression.filter(req, res);
+};
+
+app.use(compression({
+  filter: compressFilter,
+  level: 6,
+  threshold: 1024,
+  memLevel: 8
+}));
+
+// 静态资源服务，设置缓存时间为1周，并启用ETag
 app.use(express.static(path.join(__dirname, 'public'), {
-  maxAge: '1d' // 静态资源缓存1天
+  maxAge: '7d',
+  etag: true,
+  lastModified: true,
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html')) {
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    } else if (filePath.endsWith('.css')) {
+      res.setHeader('Cache-Control', 'public, max-age=604800');
+    } else if (filePath.endsWith('.js')) {
+      res.setHeader('Cache-Control', 'public, max-age=604800');
+    } else if (filePath.match(/\.(png|jpg|jpeg|gif|ico|svg)$/)) {
+      res.setHeader('Cache-Control', 'public, max-age=2592000');
+    }
+  }
+}));
+
+// 图片资源单独服务，设置更长的缓存时间
+app.use('/images', express.static(path.join(__dirname, 'public/images'), {
+  maxAge: '30d',
+  etag: true
 }));
 
 // 应用监控中间件

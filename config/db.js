@@ -20,28 +20,31 @@ const pool = mysql.createPool({
   password: dbConfig.password,
   database: dbConfig.database,
   waitForConnections: true,
-  connectionLimit: parseInt(process.env.DB_CONNECTION_LIMIT) || 50,
-  queueLimit: 100,
+  connectionLimit: parseInt(process.env.DB_POOL_SIZE) || 20,
+  queueLimit: 200,
   enableKeepAlive: true,
-  keepAliveInitialDelay: 20000,
-  connectTimeout: 10000,
+  keepAliveInitialDelay: 30000,
+  connectTimeout: 15000,
+  idleTimeout: 60000,
+  maxIdle: 10,
   multipleStatements: false,
   namedPlaceholders: true,
   dateStrings: true,
   timezone: '+00:00',
   charset: 'utf8mb4',
   supportBigNumbers: true,
-  bigNumberStrings: false
+  bigNumberStrings: false,
+  flags: ['-FOUND_ROWS']
 });
 
-// 连接事件监听
 pool.on('connection', (connection) => {
-  winston.info('数据库连接创建:', { threadId: connection.threadId });
+  winston.debug('数据库连接创建:', { threadId: connection.threadId });
   connection.query('SET SESSION sql_mode = "TRADITIONAL"');
   connection.query('SET SESSION time_zone = "+00:00"');
   connection.query('SET SESSION wait_timeout = 28800');
   connection.query('SET SESSION interactive_timeout = 28800');
   connection.query('SET SESSION max_execution_time = 30000');
+  connection.query('SET SESSION optimizer_switch = "index_merge=on,index_merge_union=on,index_merge_sort_union=on,index_merge_intersection=on"');
 });
 
 pool.on('acquire', (connection) => {
@@ -54,6 +57,10 @@ pool.on('release', (connection) => {
 
 pool.on('enqueue', () => {
   winston.warn('数据库连接队列等待');
+});
+
+pool.on('error', (err) => {
+  winston.error('数据库连接池错误:', { error: err.message });
 });
 
 const promisePool = pool.promise();
