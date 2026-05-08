@@ -56,6 +56,18 @@ class ConfigManager {
         batchSize: parseInt(process.env.BATCH_SIZE) || 10,
         compression: process.env.COMPRESSION_ENABLED === 'true',
         errorRetryLimit: parseInt(process.env.ERROR_RETRY_LIMIT) || 3
+      },
+      oauth: {
+        wechat: {
+          appId: process.env.WECHAT_APPID || '',
+          appSecret: process.env.WECHAT_APPSECRET || '',
+          callbackUrl: process.env.WECHAT_CALLBACK_URL || 'http://localhost:3000/auth/wechat/callback'
+        },
+        qq: {
+          appId: process.env.QQ_APPID || '',
+          appKey: process.env.QQ_APPKEY || '',
+          callbackUrl: process.env.QQ_CALLBACK_URL || 'http://localhost:3000/auth/qq/callback'
+        }
       }
     };
   }

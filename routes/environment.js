@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../../config/db');
+const db = require('../config/db');
 const ExcelJS = require('exceljs');
 const fs = require('fs');
 const path = require('path');
-const { cacheMiddleware } = require('../../middlewares/cache');
-const winston = require('../../config/logger');
+const { cacheMiddleware } = require('../middlewares/cache');
+const winston = require('../config/logger');
 
 // 获取最新环境数据
 router.get('/data', cacheMiddleware(60), async (req, res) => {

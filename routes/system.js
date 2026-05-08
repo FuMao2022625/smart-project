@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../../config/db');
-const { getSystemStatus } = require('../../middlewares/monitoring');
-const winston = require('../../config/logger');
+const db = require('../config/db');
+const { getSystemStatus } = require('../middlewares/monitoring');
+const winston = require('../config/logger');
 
 // 获取系统状态
 router.get('/status', async (req, res) => {

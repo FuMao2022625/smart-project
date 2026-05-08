@@ -15,7 +15,7 @@ const DB_POOL_CONFIG = {
   host: 'localhost',
   user: 'root',
   password: '12305',
-  database: 'kpl',
+  database: 'lpl',
   charset: 'utf8mb4',
   waitForConnections: true,
   connectionLimit: 10,
