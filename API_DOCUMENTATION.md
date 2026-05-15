@@ -33,36 +33,48 @@
 
 ## 1. 认证接口
 
-### 1.1 获取微信授权URL
+### 1.1 用户注册（手机号密码）
 
-- **路径**: `GET /api/auth/wechat/url`
-- **描述**: 获取微信扫码登录授权URL
-- **请求参数**: 无
+- **路径**: `POST /api/auth/register`
+- **描述**: 用户注册，使用手机号和密码
+- **请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| phone_number | string | 是 | 手机号码（11位） |
+| password | string | 是 | 密码（至少6位） |
+| nickname | string | 否 | 用户昵称 |
 
 **成功响应** (200):
 ```json
 {
   "code": 200,
-  "message": "获取微信授权URL成功",
+  "message": "注册成功",
   "data": {
-    "url": "https://open.weixin.qq.com/connect/qrconnect?appid=...",
-    "state": "random_state"
+    "token": "JWT_TOKEN",
+    "userInfo": {
+      "id": "1",
+      "username": "13800138000",
+      "nickname": "用户昵称",
+      "phone_number": "13800138000",
+      "isNewUser": true
+    }
   }
 }
 ```
 
 ---
 
-### 1.2 微信登录回调
+### 1.2 用户登录（手机号密码）
 
-- **路径**: `POST /api/auth/wechat/callback`
-- **描述**: 微信授权回调，完成登录
+- **路径**: `POST /api/auth/login`
+- **描述**: 用户登录，使用手机号和密码
 - **请求参数**:
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| code | string | 是 | 微信授权码 |
-| state | string | 否 | 状态值 |
+| phone_number | string | 是 | 手机号码 |
+| password | string | 是 | 密码 |
 
 **成功响应** (200):
 ```json
@@ -73,10 +85,9 @@
     "token": "JWT_TOKEN",
     "userInfo": {
       "id": "1",
-      "username": "wechat_xxx",
-      "nickname": "微信用户",
-      "avatar": "https://...",
-      "bindStatus": "{\"wechat\": true, \"qq\": false}",
+      "username": "13800138000",
+      "nickname": "用户昵称",
+      "phone_number": "13800138000",
       "isNewUser": false
     }
   }
@@ -85,111 +96,77 @@
 
 ---
 
-### 1.3 获取QQ授权URL
+### 1.3 发送验证码
 
-- **路径**: `GET /api/auth/qq/url`
-- **描述**: 获取QQ扫码登录授权URL
-- **请求参数**: 无
-
-**成功响应** (200):
-```json
-{
-  "code": 200,
-  "message": "获取QQ授权URL成功",
-  "data": {
-    "url": "https://graph.qq.com/oauth2.0/authorize?...",
-    "state": "random_state"
-  }
-}
-```
-
----
-
-### 1.4 QQ登录回调
-
-- **路径**: `POST /api/auth/qq/callback`
-- **描述**: QQ授权回调，完成登录
+- **路径**: `POST /api/auth/send-code`
+- **描述**: 发送短信验证码（用于密码重置）
 - **请求参数**:
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| code | string | 是 | QQ授权码 |
-| state | string | 否 | 状态值 |
+| phone_number | string | 是 | 手机号码 |
 
 **成功响应** (200):
 ```json
 {
   "code": 200,
-  "message": "登录成功",
+  "message": "验证码已发送",
   "data": {
-    "token": "JWT_TOKEN",
-    "userInfo": {
-      "id": "1",
-      "username": "qq_xxx",
-      "nickname": "QQ用户",
-      "avatar": "https://...",
-      "bindStatus": "{\"wechat\": false, \"qq\": true}",
-      "isNewUser": false
-    }
+    "phone_number": "13800138000",
+    "expires_in": 300
   }
 }
 ```
 
 ---
 
-### 1.5 获取绑定状态
+### 1.4 重置密码
 
-- **路径**: `GET /api/auth/bind/status`
-- **描述**: 获取当前用户的第三方账号绑定状态
-- **认证**: 需要 JWT Token
-- **请求参数**: 无
-
-**成功响应** (200):
-```json
-{
-  "code": 200,
-  "message": "获取绑定状态成功",
-  "data": {
-    "wechat": true,
-    "qq": false
-  }
-}
-```
-
----
-
-### 1.6 绑定第三方账号
-
-- **路径**: `POST /api/auth/bind/:provider`
-- **描述**: 绑定微信或QQ账号
-- **认证**: 需要 JWT Token
-- **路径参数**:
-
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| provider | string | wechat 或 qq |
-
+- **路径**: `POST /api/auth/reset-password`
+- **描述**: 重置密码（需要验证码）
 - **请求参数**:
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| code | string | 是 | 授权码 |
+| phone_number | string | 是 | 手机号码 |
+| code | string | 是 | 验证码 |
+| new_password | string | 是 | 新密码（至少6位） |
 
 **成功响应** (200):
 ```json
 {
   "code": 200,
-  "message": "绑定成功",
-  "data": {
-    "provider": "wechat",
-    "openid": "xxx"
-  }
+  "message": "密码重置成功",
+  "data": null
 }
 ```
 
 ---
 
-### 1.7 刷新令牌
+### 1.5 修改密码
+
+- **路径**: `POST /api/auth/change-password`
+- **描述**: 修改密码（已登录用户）
+- **认证**: 需要 JWT Token
+- **请求参数**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| old_password | string | 是 | 旧密码 |
+| new_password | string | 是 | 新密码（至少6位） |
+
+**成功响应** (200):
+```json
+{
+  "code": 200,
+  "message": "密码修改成功",
+  "data": null
+}
+```
+
+---
+
+### 1.6 刷新令牌
 
 - **路径**: `POST /api/auth/refresh-token`
 - **描述**: 刷新JWT令牌
@@ -209,7 +186,7 @@
 
 ---
 
-### 1.8 登出
+### 1.7 登出
 
 - **路径**: `POST /api/auth/logout`
 - **描述**: 用户登出
