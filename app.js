@@ -142,11 +142,7 @@ app.use(function(err, req, res, next) {
   res.render('error.html');
 });
 
-// 处理SIGINT信号，优雅关闭应用
-process.on('SIGINT', () => {
-  winston.info('正在关闭连接...');
-  process.exit(0);
-});
+// 处理SIGINT信号，优雅关闭应用（在bin/www中统一处理）
 
 // 导出应用实例
 module.exports = app;

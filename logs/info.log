@@ -3241,3 +3241,192 @@
 {"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-04-27 19:54:31.323"}
 {"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-04-27 19:54:34.844"}
 {"level":"error","message":"数据库连接失败: Encoding not recognized: 'cesu8' (searched as: 'cesu8')","metadata":{"fatal":true,"stack":"Error: Encoding not recognized: 'cesu8' (searched as: 'cesu8')\n    at Object.getCodec (C:\\Users\\ma170\\Desktop\\git\\smart-project\\node_modules\\mysql2\\node_modules\\iconv-lite\\lib\\index.js:108:15)\n    at Object.getDecoder (C:\\Users\\ma170\\Desktop\\git\\smart-project\\node_modules\\mysql2\\node_modules\\iconv-lite\\lib\\index.js:128:30)\n    at Object.<anonymous>.exports.decode (C:\\Users\\ma170\\Desktop\\git\\smart-project\\node_modules\\mysql2\\lib\\parsers\\string.js:20:23)\n    at Packet.readNullTerminatedString (C:\\Users\\ma170\\Desktop\\git\\smart-project\\node_modules\\mysql2\\lib\\packets\\packet.js:413:25)\n    at Handshake.fromPacket (C:\\Users\\ma170\\Desktop\\git\\smart-project\\node_modules\\mysql2\\lib\\packets\\handshake.js:62:33)\n    at ClientHandshake.handshakeInit (C:\\Users\\ma170\\Desktop\\git\\smart-project\\node_modules\\mysql2\\lib\\commands\\client_handshake.js:255:40)\n    at ClientHandshake.execute (C:\\Users\\ma170\\Desktop\\git\\smart-project\\node_modules\\mysql2\\lib\\commands\\command.js:45:22)\n    at PoolConnection.handlePacket (C:\\Users\\ma170\\Desktop\\git\\smart-project\\node_modules\\mysql2\\lib\\base\\connection.js:552:34)\n    at PacketParser.onPacket (C:\\Users\\ma170\\Desktop\\git\\smart-project\\node_modules\\mysql2\\lib\\base\\connection.js:102:12)\n    at PacketParser.executeStart (C:\\Users\\ma170\\Desktop\\git\\smart-project\\node_modules\\mysql2\\lib\\packet_parser.js:75:16)\n    at Socket.<anonymous> (C:\\Users\\ma170\\Desktop\\git\\smart-project\\node_modules\\mysql2\\lib\\base\\connection.js:109:25)\n    at Socket.emit (node:events:509:28)\n    at addChunk (node:internal/streams/readable:563:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:514:3)\n    at Socket.Readable.push (node:internal/streams/readable:394:5)\n    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)"},"service":"ai-project","timestamp":"2026-05-08 22:19:25.967"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:42:07.885"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:42:29.250"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:42:32.126"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:42:55.755"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:42:58.642"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:43:09.118"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:43:15.039"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:43:30.786"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:44:00.469"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:46:03.338"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:46:06.372"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:46:19.015"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:46:21.804"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:47:02.484"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:47:05.335"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:47:39.794"}
+{"level":"error","message":"查询 sensor_data 数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)","stack":"Error: Access denied for user 'root'@'localhost' (using password: NO)\n    at PromisePool.query (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at getLatestSensorData (D:\\project\\smart-project\\routes\\sse.js:101:29)\n    at Timeout.checkForNewData [as _onTimeout] (D:\\project\\smart-project\\routes\\sse.js:240:30)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"},"service":"ai-project","timestamp":"2026-06-09 19:48:38.262"}
+{"level":"error","message":"检查新数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)"},"service":"ai-project","timestamp":"2026-06-09 19:48:38.265"}
+{"level":"error","message":"查询 sensor_data 数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)","stack":"Error: Access denied for user 'root'@'localhost' (using password: NO)\n    at PromisePool.query (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at getLatestSensorData (D:\\project\\smart-project\\routes\\sse.js:101:29)\n    at Timeout.checkForNewData [as _onTimeout] (D:\\project\\smart-project\\routes\\sse.js:240:30)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"},"service":"ai-project","timestamp":"2026-06-09 19:48:40.231"}
+{"level":"error","message":"检查新数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)"},"service":"ai-project","timestamp":"2026-06-09 19:48:40.232"}
+{"level":"error","message":"查询 sensor_data 数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)","stack":"Error: Access denied for user 'root'@'localhost' (using password: NO)\n    at PromisePool.query (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at getLatestSensorData (D:\\project\\smart-project\\routes\\sse.js:101:29)\n    at Timeout.checkForNewData [as _onTimeout] (D:\\project\\smart-project\\routes\\sse.js:240:30)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"},"service":"ai-project","timestamp":"2026-06-09 19:48:42.237"}
+{"level":"error","message":"检查新数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)"},"service":"ai-project","timestamp":"2026-06-09 19:48:42.238"}
+{"level":"error","message":"查询 sensor_data 数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)","stack":"Error: Access denied for user 'root'@'localhost' (using password: NO)\n    at PromisePool.query (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at getLatestSensorData (D:\\project\\smart-project\\routes\\sse.js:101:29)\n    at Timeout.checkForNewData [as _onTimeout] (D:\\project\\smart-project\\routes\\sse.js:240:30)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"},"service":"ai-project","timestamp":"2026-06-09 19:48:44.243"}
+{"level":"error","message":"检查新数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)"},"service":"ai-project","timestamp":"2026-06-09 19:48:44.244"}
+{"level":"error","message":"查询 sensor_data 数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)","stack":"Error: Access denied for user 'root'@'localhost' (using password: NO)\n    at PromisePool.query (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at getLatestSensorData (D:\\project\\smart-project\\routes\\sse.js:101:29)\n    at Timeout.checkForNewData [as _onTimeout] (D:\\project\\smart-project\\routes\\sse.js:240:30)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"},"service":"ai-project","timestamp":"2026-06-09 19:48:46.252"}
+{"level":"error","message":"检查新数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)"},"service":"ai-project","timestamp":"2026-06-09 19:48:46.252"}
+{"level":"error","message":"查询 sensor_data 数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)","stack":"Error: Access denied for user 'root'@'localhost' (using password: NO)\n    at PromisePool.query (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at getLatestSensorData (D:\\project\\smart-project\\routes\\sse.js:101:29)\n    at Timeout.checkForNewData [as _onTimeout] (D:\\project\\smart-project\\routes\\sse.js:240:30)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"},"service":"ai-project","timestamp":"2026-06-09 19:48:48.257"}
+{"level":"error","message":"检查新数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)"},"service":"ai-project","timestamp":"2026-06-09 19:48:48.257"}
+{"level":"error","message":"查询 sensor_data 数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)","stack":"Error: Access denied for user 'root'@'localhost' (using password: NO)\n    at PromisePool.query (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at getLatestSensorData (D:\\project\\smart-project\\routes\\sse.js:101:29)\n    at Timeout.checkForNewData [as _onTimeout] (D:\\project\\smart-project\\routes\\sse.js:240:30)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"},"service":"ai-project","timestamp":"2026-06-09 19:48:50.271"}
+{"level":"error","message":"检查新数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)"},"service":"ai-project","timestamp":"2026-06-09 19:48:50.271"}
+{"level":"error","message":"查询 sensor_data 数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)","stack":"Error: Access denied for user 'root'@'localhost' (using password: NO)\n    at PromisePool.query (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at getLatestSensorData (D:\\project\\smart-project\\routes\\sse.js:101:29)\n    at Timeout.checkForNewData [as _onTimeout] (D:\\project\\smart-project\\routes\\sse.js:240:30)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"},"service":"ai-project","timestamp":"2026-06-09 19:48:52.273"}
+{"level":"error","message":"检查新数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)"},"service":"ai-project","timestamp":"2026-06-09 19:48:52.273"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:49:22.490"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:49:46.860"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:49:50.207"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:50:19.604"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:50:22.551"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:50:58.715"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:51:01.540"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:51:31.010"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:51:33.877"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:52:15.788"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:52:33.879"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:52:36.699"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:53:25.954"}
+{"level":"error","message":"数据库连接失败: Access denied for user 'root'@'localhost' (using password: NO)","metadata":{"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user 'root'@'localhost' (using password: NO)","sqlState":"28000","stack":"Error: Access denied for user 'root'@'localhost' (using password: NO)\n    at Packet.asError (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\packets\\packet.js:788:17)\n    at ClientHandshake.execute (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\commands\\command.js:29:26)\n    at PoolConnection.handlePacket (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\base\\connection.js:552:34)\n    at PacketParser.onPacket (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\base\\connection.js:102:12)\n    at PacketParser.executeStart (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\packet_parser.js:75:16)\n    at Socket.<anonymous> (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\base\\connection.js:109:25)\n    at Socket.emit (node:events:509:28)\n    at addChunk (node:internal/streams/readable:563:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:514:3)\n    at Readable.push (node:internal/streams/readable:394:5)\n    at TCP.onStreamRead (node:internal/stream_base_commons:189:23)"},"service":"ai-project","timestamp":"2026-06-09 19:53:28.777"}
+{"level":"error","message":"查询 sensor_data 数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)","stack":"Error: Access denied for user 'root'@'localhost' (using password: NO)\n    at PromisePool.query (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at getLatestSensorData (D:\\project\\smart-project\\routes\\sse.js:101:29)\n    at Timeout.checkForNewData [as _onTimeout] (D:\\project\\smart-project\\routes\\sse.js:240:30)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"},"service":"ai-project","timestamp":"2026-06-09 19:53:30.067"}
+{"level":"error","message":"检查新数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)"},"service":"ai-project","timestamp":"2026-06-09 19:53:30.068"}
+{"level":"error","message":"查询 sensor_data 数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)","stack":"Error: Access denied for user 'root'@'localhost' (using password: NO)\n    at PromisePool.query (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at getLatestSensorData (D:\\project\\smart-project\\routes\\sse.js:101:29)\n    at Timeout.checkForNewData [as _onTimeout] (D:\\project\\smart-project\\routes\\sse.js:240:30)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"},"service":"ai-project","timestamp":"2026-06-09 19:53:32.072"}
+{"level":"error","message":"检查新数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)"},"service":"ai-project","timestamp":"2026-06-09 19:53:32.073"}
+{"level":"error","message":"查询 sensor_data 数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)","stack":"Error: Access denied for user 'root'@'localhost' (using password: NO)\n    at PromisePool.query (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at getLatestSensorData (D:\\project\\smart-project\\routes\\sse.js:101:29)\n    at Timeout.checkForNewData [as _onTimeout] (D:\\project\\smart-project\\routes\\sse.js:240:30)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"},"service":"ai-project","timestamp":"2026-06-09 19:53:34.087"}
+{"level":"error","message":"检查新数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)"},"service":"ai-project","timestamp":"2026-06-09 19:53:34.087"}
+{"level":"error","message":"查询 sensor_data 数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)","stack":"Error: Access denied for user 'root'@'localhost' (using password: NO)\n    at PromisePool.query (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at getLatestSensorData (D:\\project\\smart-project\\routes\\sse.js:101:29)\n    at Timeout.checkForNewData [as _onTimeout] (D:\\project\\smart-project\\routes\\sse.js:240:30)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"},"service":"ai-project","timestamp":"2026-06-09 19:53:36.098"}
+{"level":"error","message":"检查新数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)"},"service":"ai-project","timestamp":"2026-06-09 19:53:36.099"}
+{"level":"error","message":"查询 sensor_data 数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)","stack":"Error: Access denied for user 'root'@'localhost' (using password: NO)\n    at PromisePool.query (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at getLatestSensorData (D:\\project\\smart-project\\routes\\sse.js:101:29)\n    at Timeout.checkForNewData [as _onTimeout] (D:\\project\\smart-project\\routes\\sse.js:240:30)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"},"service":"ai-project","timestamp":"2026-06-09 19:53:38.107"}
+{"level":"error","message":"检查新数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)"},"service":"ai-project","timestamp":"2026-06-09 19:53:38.107"}
+{"level":"error","message":"查询 sensor_data 数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)","stack":"Error: Access denied for user 'root'@'localhost' (using password: NO)\n    at PromisePool.query (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at getLatestSensorData (D:\\project\\smart-project\\routes\\sse.js:101:29)\n    at Timeout.checkForNewData [as _onTimeout] (D:\\project\\smart-project\\routes\\sse.js:240:30)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"},"service":"ai-project","timestamp":"2026-06-09 19:53:40.108"}
+{"level":"error","message":"检查新数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)"},"service":"ai-project","timestamp":"2026-06-09 19:53:40.108"}
+{"level":"error","message":"查询 sensor_data 数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)","stack":"Error: Access denied for user 'root'@'localhost' (using password: NO)\n    at PromisePool.query (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at getLatestSensorData (D:\\project\\smart-project\\routes\\sse.js:101:29)\n    at Timeout.checkForNewData [as _onTimeout] (D:\\project\\smart-project\\routes\\sse.js:240:30)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"},"service":"ai-project","timestamp":"2026-06-09 19:53:42.121"}
+{"level":"error","message":"检查新数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)"},"service":"ai-project","timestamp":"2026-06-09 19:53:42.121"}
+{"level":"error","message":"查询 sensor_data 数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)","stack":"Error: Access denied for user 'root'@'localhost' (using password: NO)\n    at PromisePool.query (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at getLatestSensorData (D:\\project\\smart-project\\routes\\sse.js:101:29)\n    at Timeout.checkForNewData [as _onTimeout] (D:\\project\\smart-project\\routes\\sse.js:240:30)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"},"service":"ai-project","timestamp":"2026-06-09 19:53:44.124"}
+{"level":"error","message":"检查新数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)"},"service":"ai-project","timestamp":"2026-06-09 19:53:44.124"}
+{"level":"error","message":"查询 sensor_data 数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)","stack":"Error: Access denied for user 'root'@'localhost' (using password: NO)\n    at PromisePool.query (D:\\project\\smart-project\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at getLatestSensorData (D:\\project\\smart-project\\routes\\sse.js:101:29)\n    at Timeout.checkForNewData [as _onTimeout] (D:\\project\\smart-project\\routes\\sse.js:240:30)\n    at listOnTimeout (node:internal/timers:605:17)\n    at process.processTimers (node:internal/timers:541:7)"},"service":"ai-project","timestamp":"2026-06-09 19:53:46.134"}
+{"level":"error","message":"检查新数据失败","metadata":{"error":"Access denied for user 'root'@'localhost' (using password: NO)"},"service":"ai-project","timestamp":"2026-06-09 19:53:46.134"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:54:26.522"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:55:05.406"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:55:08.176"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:58:38.678"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 19:59:00.646"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:00:01.229"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:00:19.876"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:00:34.976"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:00:40.355"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:04:11.640"}
+{"level":"info","message":"热成像传感器数据服务器已成功启动","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:04:11.642"}
+{"level":"info","message":"监听地址: 0.0.0.0:8888","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:04:11.643"}
+{"level":"info","message":"等待客户端连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:04:11.643"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:04:11.643"}
+{"level":"info","message":"心跳机制已启动，间隔: 30000ms, 超时: 90000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:04:11.643"}
+{"level":"info","message":"性能监控已启动，间隔: 60000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:04:11.643"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:04:11.667"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:04:40.618"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:04:43.468"}
+{"level":"info","message":"热成像传感器数据服务器已成功启动","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:04:43.470"}
+{"level":"info","message":"监听地址: 0.0.0.0:8888","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:04:43.470"}
+{"level":"info","message":"等待客户端连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:04:43.470"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:04:43.471"}
+{"level":"info","message":"心跳机制已启动，间隔: 30000ms, 超时: 90000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:04:43.471"}
+{"level":"info","message":"性能监控已启动，间隔: 60000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:04:43.471"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:04:43.496"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:05:20.617"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:05:23.405"}
+{"level":"info","message":"热成像传感器数据服务器已成功启动","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:05:23.407"}
+{"level":"info","message":"监听地址: 0.0.0.0:8888","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:05:23.408"}
+{"level":"info","message":"等待客户端连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:05:23.408"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:05:23.408"}
+{"level":"info","message":"心跳机制已启动，间隔: 30000ms, 超时: 90000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:05:23.408"}
+{"level":"info","message":"性能监控已启动，间隔: 60000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:05:23.409"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:05:23.433"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:06:06.649"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:06:09.363"}
+{"level":"info","message":"热成像传感器数据服务器已成功启动","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:06:09.365"}
+{"level":"info","message":"监听地址: 0.0.0.0:8888","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:06:09.366"}
+{"level":"info","message":"等待客户端连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:06:09.366"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:06:09.366"}
+{"level":"info","message":"心跳机制已启动，间隔: 30000ms, 超时: 90000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:06:09.367"}
+{"level":"info","message":"性能监控已启动，间隔: 60000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:06:09.367"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:06:09.394"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:06:45.325"}
+{"level":"info","message":"热成像传感器数据服务器已成功启动","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:06:45.327"}
+{"level":"info","message":"监听地址: 0.0.0.0:8888","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:06:45.328"}
+{"level":"info","message":"等待客户端连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:06:45.329"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:06:45.329"}
+{"level":"info","message":"心跳机制已启动，间隔: 30000ms, 超时: 90000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:06:45.330"}
+{"level":"info","message":"性能监控已启动，间隔: 60000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:06:45.330"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:06:45.358"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:07:19.190"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:07:21.994"}
+{"level":"info","message":"热成像传感器数据服务器已成功启动","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:07:21.996"}
+{"level":"info","message":"监听地址: 0.0.0.0:8888","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:07:21.997"}
+{"level":"info","message":"等待客户端连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:07:21.997"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:07:21.997"}
+{"level":"info","message":"心跳机制已启动，间隔: 30000ms, 超时: 90000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:07:21.997"}
+{"level":"info","message":"性能监控已启动，间隔: 60000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:07:21.997"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:07:22.023"}
+{"level":"info","message":"正在关闭连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:07:53.739"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:07:56.479"}
+{"level":"info","message":"热成像传感器数据服务器已成功启动","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:07:56.482"}
+{"level":"info","message":"监听地址: 0.0.0.0:8888","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:07:56.482"}
+{"level":"info","message":"等待客户端连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:07:56.483"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:07:56.483"}
+{"level":"info","message":"心跳机制已启动，间隔: 30000ms, 超时: 90000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:07:56.483"}
+{"level":"info","message":"性能监控已启动，间隔: 60000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:07:56.483"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:07:56.509"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:08:56.490"}
+{"level":"info","message":"性能监控指标","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:08:56.491"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:08:56.491"}
+{"level":"info","message":"服务器运行时间: 60 秒","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:08:56.491"}
+{"level":"info","message":"总请求数: 0","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:08:56.491"}
+{"level":"info","message":"成功请求数: 0","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:08:56.492"}
+{"level":"info","message":"失败请求数: 0","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:08:56.492"}
+{"level":"info","message":"请求成功率: 0.00%","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:08:56.492"}
+{"level":"info","message":"平均响应时间: 0.00 ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:08:56.492"}
+{"level":"info","message":"总接收数据: 0.00 KB","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:08:56.492"}
+{"level":"info","message":"总发送数据: 0.00 KB","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:08:56.492"}
+{"level":"info","message":"当前连接数: 0","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:08:56.492"}
+{"level":"info","message":"连接池使用率: 0.00%","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:08:56.492"}
+{"level":"info","message":"连接池峰值: 0","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:08:56.492"}
+{"level":"info","message":"总连接数: 0","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:08:56.493"}
+{"level":"info","message":"失败连接数: 0","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:08:56.493"}
+{"level":"info","message":"已关闭连接数: 0","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:08:56.493"}
+{"level":"info","message":"================================================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:08:56.493"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:10:08.268"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:11:53.892"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:11:53.895"}
+{"level":"info","message":"热成像传感器数据服务器已成功启动","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:11:53.895"}
+{"level":"info","message":"监听地址: 0.0.0.0:8888","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:11:53.895"}
+{"level":"info","message":"等待客户端连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:11:53.895"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:11:53.896"}
+{"level":"info","message":"心跳机制已启动，间隔: 30000ms, 超时: 90000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:11:53.896"}
+{"level":"info","message":"性能监控已启动，间隔: 60000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:11:53.896"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:12:39.153"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:12:39.156"}
+{"level":"info","message":"热成像传感器数据服务器已成功启动","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:12:39.156"}
+{"level":"info","message":"监听地址: 0.0.0.0:8888","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:12:39.156"}
+{"level":"info","message":"等待客户端连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:12:39.156"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:12:39.156"}
+{"level":"info","message":"心跳机制已启动，间隔: 30000ms, 超时: 90000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:12:39.157"}
+{"level":"info","message":"性能监控已启动，间隔: 60000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:12:39.157"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:13:34.573"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:13:34.576"}
+{"level":"info","message":"热成像传感器数据服务器已成功启动","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:13:34.577"}
+{"level":"info","message":"监听地址: 0.0.0.0:8888","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:13:34.577"}
+{"level":"info","message":"等待客户端连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:13:34.577"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:13:34.577"}
+{"level":"info","message":"心跳机制已启动，间隔: 30000ms, 超时: 90000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:13:34.578"}
+{"level":"info","message":"性能监控已启动，间隔: 60000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:13:34.578"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:14:08.375"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:14:08.377"}
+{"level":"info","message":"热成像传感器数据服务器已成功启动","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:14:08.378"}
+{"level":"info","message":"监听地址: 0.0.0.0:8888","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:14:08.378"}
+{"level":"info","message":"等待客户端连接...","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:14:08.378"}
+{"level":"info","message":"============================================================","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:14:08.378"}
+{"level":"info","message":"心跳机制已启动，间隔: 30000ms, 超时: 90000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:14:08.378"}
+{"level":"info","message":"性能监控已启动，间隔: 60000ms","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:14:08.379"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:14:53.597"}
+{"level":"info","message":"Socket服务器运行在端口 8888","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:14:53.600"}
+{"level":"info","message":"数据库连接成功","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:16:49.882"}
+{"level":"info","message":"Socket服务器运行在端口 8888","metadata":{},"service":"ai-project","timestamp":"2026-06-09 20:16:49.889"}

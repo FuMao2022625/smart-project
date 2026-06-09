@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
+require('dotenv').config();
+
 class ConfigManager {
   constructor() {
     this.config = {};

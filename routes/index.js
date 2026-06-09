@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const { apiErrorHandler } = require('./middlewares/apiHandler');
-const { cacheMiddleware } = require('./middlewares/cache');
+const { apiErrorHandler } = require('../middlewares/apiHandler');
+const { cacheMiddleware } = require('../middlewares/cache');
 
 router.get('/', function(req, res, next) {
   res.render('index.html', { title: 'Express' });
